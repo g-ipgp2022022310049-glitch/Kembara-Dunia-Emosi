@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kembara Dunia Emosi - Tahun 1 Bijak</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'fredoka': ['Fredoka', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        'gembira': { light: '#FEF9C3', DEFAULT: '#FACC15', dark: '#CA8A04', border: '#EAB308' },
+                        'sedih': { light: '#DBEAFE', DEFAULT: '#60A5FA', dark: '#2563EB', border: '#3B82F6' },
+                        'takut': { light: '#F3E8FF', DEFAULT: '#C084FC', dark: '#7E22CE', border: '#9333EA' },
+                        'marah': { light: '#FEE2E2', DEFAULT: '#F87171', dark: '#DC2626', border: '#EF4444' },
+                        'malu': { light: '#FCE7F3', DEFAULT: '#F472B6', dark: '#DB2777', border: '#EC4899' },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #E0F2FE 0%, #FEF3C7 50%, #FCE7F3 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Butang 3D Gaya Permainan Kanak-Kanak */
+        .btn-3d {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+        }
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.18);
+        }
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        /* Animasi Kotak Misteri */
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            20% { transform: rotate(-7deg) scale(1.05); }
+            40% { transform: rotate(7deg) scale(1.05); }
+            60% { transform: rotate(-5deg) scale(1.03); }
+            80% { transform: rotate(5deg) scale(1.03); }
+        }
+        .animate-wobble {
+            animation: wobble 0.65s ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7); }
+            70% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-pop {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Gaya Balang Kaca */
+        .jar-body {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(4px);
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            border-radius: 16px 16px 32px 32px;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05), 0 8px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .jar-body.drag-over {
+            transform: scale(1.06);
+            border-color: #10B981;
+            background: rgba(209, 250, 229, 0.85);
+        }
+
+        /* Confetti zarah */
+        .confetti-piece {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            top: -20px;
+            z-index: 9999;
+            border-radius: 3px;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col">
+
+    <!-- ==================== BAR NAVIGASI ATAS ==================== -->
+    <header class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-4 border-sky-200">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+            <!-- Logo / Tajuk -->
+            <button onclick="navigateTo('home')" class="flex items-center gap-2 text-left group focus:outline-none">
+                <span class="text-3xl sm:text-4xl group-hover:scale-110 transition-transform">🌈</span>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-sky-700 leading-tight">Kembara Dunia Emosi</h1>
+                    <p class="text-xs font-bold text-amber-600">Pendidikan Kesihatan • Tahun 1 Bijak</p>
+                </div>
+            </button>
+
+            <!-- Butang Fasa RPH (Responsif) -->
+            <nav class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 max-w-full">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-sky-100 text-sky-700 hover:bg-sky-200 transition whitespace-nowrap">
+                    🏠 Utama
+                </button>
+                <button onclick="navigateTo('act1')" id="nav-act1" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-amber-100 text-amber-800 hover:bg-amber-200 transition whitespace-nowrap">
+                    🎁 1. Kotak Emosi
+                </button>
+                <button onclick="navigateTo('act2')" id="nav-act2" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition whitespace-nowrap">
+                    🔍 2. Detektif
+                </button>
+                <button onclick="navigateTo('act3')" id="nav-act3" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-purple-100 text-purple-800 hover:bg-purple-200 transition whitespace-nowrap">
+                    🫙 3. Balang Emosi
+                </button>
+                <button onclick="navigateTo('act4')" id="nav-act4" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-pink-100 text-pink-800 hover:bg-pink-200 transition whitespace-nowrap">
+                    🎡 4. Roda Gergasi
+                </button>
+                <button onclick="navigateTo('summary')" id="nav-summary" class="nav-pill px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-yellow-300 text-yellow-900 hover:bg-yellow-400 transition whitespace-nowrap">
+                    🏅 Rumusan
+                </button>
+            </nav>
+
+            <!-- Kawalan Audio Lembut (Mematuhi catatan pensyarah RPH) -->
+            <div class="flex items-center gap-2">
+                <button id="btn-teacher-records" onclick="openTeacherRecordsModal()" title="Lihat Rekod Murid yang Bermain" class="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center gap-1 shadow-sm transition">
+                    <span>📊</span> <span class="hidden sm:inline">Rekod Guru</span>
+                    <span id="teacher-record-count" class="bg-white text-emerald-800 px-1.5 py-0.2 rounded-full text-[11px] font-extrabold">0</span>
+                </button>
+                <button id="btn-player-badge" onclick="openPlayerModal()" title="Tukar Nama Murid" class="px-3 py-1.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold text-xs sm:text-sm flex items-center gap-1 transition">
+                    <span>🧒</span> <span id="header-player-name" class="max-w-[90px] sm:max-w-[130px] truncate">Murid 1 Bijak</span>
+                </button>
+                <button id="btn-share-qr" onclick="openShareModal()" title="Kongsi Pautan & Kod QR" class="px-3 py-2 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs sm:text-sm flex items-center gap-1 shadow-sm transition">
+                    <span>📱</span> <span class="hidden sm:inline">Kongsi QR</span>
+                </button>
+                <button id="btn-sfx" onclick="toggleSFX()" title="Kesan Bunyi" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-1 border border-slate-300">
+                    <span id="sfx-icon">🔔</span> <span class="hidden md:inline">Bunyi</span>
+                </button>
+                <button id="btn-bgm" onclick="toggleBGM()" title="Muzik Latar Lembut" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-1 border border-slate-300">
+                    <span id="bgm-icon">🔇</span> <span class="hidden md:inline">Muzik</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== KANDUNGAN UTAMA ==================== -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6">
+
+        <!-- ==================== HALAMAN 0: MENU UTAMA ==================== -->
+        <section id="view-home" class="space-y-6 animate-pop">
+            <div class="bg-white/90 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-sky-300 text-center relative overflow-hidden">
+                <div class="inline-block bg-amber-100 text-amber-800 font-bold px-4 py-1 rounded-full text-xs sm:text-sm mb-3 border border-amber-300">
+                    Bidang 4: Pengurusan Mental dan Emosi • SP 4.1.1
+                </div>
+                <h2 id="home-welcome-title" class="text-3xl sm:text-5xl font-bold text-sky-700 mb-3">
+                    Selamat Datang ke Dunia Emosi! 🌟
+                </h2>
+                <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+                    Mari kenali 5 jenis perasaan dalam diri kita melalui 4 permainan menyeronokkan bersama rakan-rakan kelas <strong>1 Bijak</strong>!
+                </p>
+
+                <!-- 5 Kad Emosi Utama Interaktif (Klik untuk dengar & lihat ciri) -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto mb-6">
+                    <button onclick="previewEmotion('gembira')" class="btn-3d bg-gembira-light border-4 border-gembira rounded-2xl p-3 flex flex-col items-center hover:bg-yellow-200">
+                        <span class="text-5xl sm:text-6xl mb-1">😊</span>
+                        <span class="font-display font-bold text-lg text-gembira-dark">Gembira</span>
+                        <span id="badge-learned-gembira" class="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/80 text-slate-500 font-bold">Klik kenali</span>
+                    </button>
+                    <button onclick="previewEmotion('sedih')" class="btn-3d bg-sedih-light border-4 border-sedih rounded-2xl p-3 flex flex-col items-center hover:bg-blue-200">
+                        <span class="text-5xl sm:text-6xl mb-1">😢</span>
+                        <span class="font-display font-bold text-lg text-sedih-dark">Sedih</span>
+                        <span id="badge-learned-sedih" class="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/80 text-slate-500 font-bold">Klik kenali</span>
+                    </button>
+                    <button onclick="previewEmotion('takut')" class="btn-3d bg-takut-light border-4 border-takut rounded-2xl p-3 flex flex-col items-center hover:bg-purple-200">
+                        <span class="text-5xl sm:text-6xl mb-1">😨</span>
+                        <span class="font-display font-bold text-lg text-takut-dark">Takut</span>
+                        <span id="badge-learned-takut" class="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/80 text-slate-500 font-bold">Klik kenali</span>
+                    </button>
+                    <button onclick="previewEmotion('marah')" class="btn-3d bg-marah-light border-4 border-marah rounded-2xl p-3 flex flex-col items-center hover:bg-red-200">
+                        <span class="text-5xl sm:text-6xl mb-1">😠</span>
+                        <span class="font-display font-bold text-lg text-marah-dark">Marah</span>
+                        <span id="badge-learned-marah" class="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/80 text-slate-500 font-bold">Klik kenali</span>
+                    </button>
+                    <button onclick="previewEmotion('malu')" class="btn-3d col-span-2 sm:col-span-1 bg-malu-light border-4 border-malu rounded-2xl p-3 flex flex-col items-center hover:bg-pink-200">
+                        <span class="text-5xl sm:text-6xl mb-1">😳</span>
+                        <span class="font-display font-bold text-lg text-malu-dark">Malu</span>
+                        <span id="badge-learned-malu" class="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/80 text-slate-500 font-bold">Klik kenali</span>
+                    </button>
+                </div>
+
+                <!-- Kad Penerangan Emosi Bergambar & Audio (Bila Emosi Diklik) -->
+                <div id="home-emotion-info" class="hidden max-w-3xl mx-auto bg-gradient-to-br from-sky-50 to-white border-4 border-sky-300 rounded-3xl p-5 sm:p-6 mb-4 text-left shadow-lg animate-pop">
+                    <div class="flex flex-col md:flex-row items-center gap-5">
+                        <!-- Ilustrasi Gambar Situasi Emosi (SVG Kartun Mesra Kanak-Kanak) -->
+                        <div id="home-info-illustration" class="w-40 h-40 sm:w-44 sm:h-44 rounded-3xl bg-white border-4 border-sky-200 shadow-inner flex items-center justify-center shrink-0 overflow-hidden p-2">
+                            <!-- SVG dijana melalui JS -->
+                        </div>
+
+                        <!-- Kandungan Penerangan & Contoh Situasi -->
+                        <div class="flex-grow space-y-2.5 text-center md:text-left">
+                            <div class="flex flex-wrap items-center justify-center md:justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <span id="home-info-emoji" class="text-4xl">😊</span>
+                                    <h4 id="home-info-title" class="font-display font-bold text-2xl sm:text-3xl text-sky-800">Emosi Gembira</h4>
+                                </div>
+                                <button type="button" onclick="replayPreviewEmotionAudio()" class="btn-3d bg-sky-500 hover:bg-sky-600 text-white font-display font-bold px-4 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5">
+                                    🔊 Dengar Penerangan
+                                </button>
+                            </div>
+
+                            <div class="bg-white/90 rounded-2xl p-3 border border-sky-200">
+                                <p class="text-xs font-extrabold uppercase tracking-wider text-sky-700">🎭 Ciri Ekspresi Wajah:</p>
+                                <p id="home-info-desc" class="text-sm sm:text-base font-bold text-slate-700 mt-0.5">Mulut tersenyum lebar, pipi terangkat, dan mata bersinar ceria!</p>
+                            </div>
+
+                            <div class="bg-amber-50 rounded-2xl p-3 border border-amber-200">
+                                <p class="text-xs font-extrabold uppercase tracking-wider text-amber-800">🌟 Contoh Situasi Harian:</p>
+                                <p id="home-info-situation" class="text-sm sm:text-base font-bold text-slate-800 mt-0.5">Contohnya, apabila kamu mendapat hadiah hari jadi atau dipuji oleh cikgu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kad 4 Fasa Aktiviti PdPc -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Fasa 1 -->
+                <div onclick="navigateTo('act1')" class="cursor-pointer bg-white rounded-3xl p-6 shadow-lg border-4 border-amber-300 hover:border-amber-500 transition group flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-2xl bg-amber-100 flex items-center justify-center text-5xl shrink-0 group-hover:scale-110 transition-transform">
+                        🎁
+                    </div>
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600 bg-amber-100 px-2.5 py-0.5 rounded-full">Set Induksi (5 Minit)</span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">1. Kotak Emosi</h3>
+                        <p class="text-sm text-slate-600">Buka kotak misteri, lihat rahsia lakonan dan lakonkan tanpa bersuara!</p>
+                    </div>
+                </div>
+
+                <!-- Fasa 2 -->
+                <div onclick="navigateTo('act2')" class="cursor-pointer bg-white rounded-3xl p-6 shadow-lg border-4 border-emerald-300 hover:border-emerald-500 transition group flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-2xl bg-emerald-100 flex items-center justify-center text-5xl shrink-0 group-hover:scale-110 transition-transform">
+                        🕵️
+                    </div>
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">Perkembangan (10 Minit)</span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">2. Detektif Emosi</h3>
+                        <p class="text-sm text-slate-600">Siasat situasi harian dan pilih sudut emosi yang paling sesuai.</p>
+                    </div>
+                </div>
+
+                <!-- Fasa 3 -->
+                <div onclick="navigateTo('act3')" class="cursor-pointer bg-white rounded-3xl p-6 shadow-lg border-4 border-purple-300 hover:border-purple-500 transition group flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-2xl bg-purple-100 flex items-center justify-center text-5xl shrink-0 group-hover:scale-110 transition-transform">
+                        🫙
+                    </div>
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-full">Kemuncak (10 Minit)</span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">3. Balang Emosi</h3>
+                        <p class="text-sm text-slate-600">Permainan 4 kumpulan! Masukkan kad situasi ke dalam balang emosi yang betul.</p>
+                    </div>
+                </div>
+
+                <!-- Fasa 4 -->
+                <div onclick="navigateTo('act4')" class="cursor-pointer bg-white rounded-3xl p-6 shadow-lg border-4 border-pink-300 hover:border-pink-500 transition group flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-2xl bg-pink-100 flex items-center justify-center text-5xl shrink-0 group-hover:scale-110 transition-transform">
+                        🎡
+                    </div>
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-pink-700 bg-pink-100 px-2.5 py-0.5 rounded-full">Penutup (5 Minit)</span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">4. Roda Gergasi Emosi</h3>
+                        <p class="text-sm text-slate-600">Pusing roda emosi dan kongsikan pengalaman perasaan kamu hari ini!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AKTIVITI 1: KOTAK EMOSI (SET INDUKSI) ==================== -->
+        <section id="view-act1" class="hidden space-y-6 animate-pop">
+            <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-amber-300">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-amber-100 pb-4 mb-6">
+                    <div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">Fasa 1: Set Induksi • Lakonan Ekspresi Wajah</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-amber-700 mt-1">🎁 Aktiviti Kotak Emosi</h2>
+                    </div>
+                    <div class="flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200">
+                        <span class="text-sm font-bold text-amber-900">Kad Dibuka:</span>
+                        <span id="act1-count" class="text-xl font-display font-bold text-amber-600">0 / 5</span>
+                    </div>
+                </div>
+
+                <!-- Kawalan Guru / Pilihan Mod -->
+                <div class="bg-sky-50 rounded-2xl p-4 mb-6 border-2 border-sky-200 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm sm:text-base text-sky-900 font-semibold">
+                        💡 <strong>Cara Bermain:</strong> Seorang murid ke hadapan, klik <strong>Kotak Emosi</strong>, lihat kad secara rahsia, dan lakonkan tanpa bersuara!
+                    </p>
+                    <div class="flex items-center gap-2">
+                        <label for="act1-select-mode" class="text-xs font-bold text-slate-600">Pilih Kad:</label>
+                        <select id="act1-select-mode" class="bg-white border-2 border-sky-300 rounded-xl px-3 py-1.5 text-sm font-bold text-slate-700 focus:outline-none">
+                            <option value="random">🎲 Rawak (Misteri)</option>
+                            <option value="gembira">😊 Gembira</option>
+                            <option value="sedih">😢 Sedih</option>
+                            <option value="takut">😨 Takut</option>
+                            <option value="marah">😠 Marah</option>
+                            <option value="malu">😳 Malu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Pentas Utama Kotak Emosi -->
+                <div class="flex flex-col items-center justify-center py-4">
+                    <!-- Kotak Misteri -->
+                    <div id="mystery-box-container" class="text-center">
+                        <button id="mystery-box-btn" onclick="openMysteryBox()" class="group relative w-48 h-48 sm:w-56 sm:h-56 mx-auto bg-gradient-to-b from-amber-300 to-amber-500 rounded-3xl border-8 border-amber-600 shadow-2xl flex flex-col items-center justify-center animate-float hover:scale-105 transition-transform focus:outline-none">
+                            <!-- Reben Kotak -->
+                            <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-6 bg-red-500/80"></div>
+                            <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-6 bg-red-500/80"></div>
+                            <span class="relative z-10 text-7xl sm:text-8xl drop-shadow-md group-hover:rotate-6 transition-transform">🎁</span>
+                            <span class="relative z-10 mt-2 bg-white text-amber-800 font-display font-bold px-4 py-1 rounded-full text-sm sm:text-base shadow">
+                                Klik Buka Kotak!
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Kad Rahsia Lakonan (Muncul selepas kotak dibuka) -->
+                    <div id="act1-card-stage" class="hidden w-full max-w-xl mt-2">
+                        <!-- Fasa 1A: Skrin Rahsia untuk Pelakon -->
+                        <div id="act1-secret-view" class="bg-slate-800 text-white rounded-3xl p-6 sm:p-8 text-center border-4 border-amber-400 shadow-2xl animate-pop">
+                            <div class="inline-block bg-amber-400 text-slate-900 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider mb-3">
+                                🤫 Mod Rahsia Pelakon Sahaja
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Kawan-kawan lain tutup mata ya!</h3>
+                            <p class="text-slate-300 text-sm mb-5">Murid di hadapan sila lihat emosi kamu dan lakonkan ekspresi wajah tanpa bercakap.</p>
+                            
+                            <div id="act1-secret-box" class="bg-white text-slate-800 rounded-2xl p-5 mb-6 shadow-inner">
+                                <div id="act1-secret-emoji" class="text-7xl sm:text-8xl mb-2">😊</div>
+                                <div id="act1-secret-name" class="text-3xl font-display font-bold text-amber-600 mb-2">GEMBIRA</div>
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-left">
+                                    <p class="text-xs font-bold text-amber-800 uppercase">🎭 Panduan Ekspresi Wajah:</p>
+                                    <p id="act1-secret-cue" class="text-sm sm:text-base font-semibold text-slate-700 mt-0.5">Mulut tersenyum lebar, mata bersinar ceria.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap justify-center gap-3">
+                                <button onclick="revealCardToClass()" class="btn-3d bg-emerald-500 hover:bg-emerald-600 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                                    👀 Tunjuk Kad Kepada Kelas!
+                                </button>
+                                <button onclick="resetMysteryBox()" class="btn-3d bg-slate-600 hover:bg-slate-500 text-white font-bold px-4 py-3 rounded-2xl text-sm">
+                                    🔄 Cabut Semula
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fasa 1B: Paparan Terbuka Untuk Semua Murid Meneka -->
+                        <div id="act1-public-view" class="hidden rounded-3xl p-6 sm:p-8 text-center border-4 shadow-2xl animate-pop">
+                            <span class="inline-block bg-white/90 text-slate-800 font-bold px-4 py-1 rounded-full text-xs sm:text-sm mb-3 shadow-sm">
+                                👏 Tahniah! Jawapannya ialah...
+                            </span>
+                            <div id="act1-public-emoji" class="text-8xl sm:text-9xl my-3 drop-shadow">😊</div>
+                            <h3 id="act1-public-name" class="text-4xl sm:text-5xl font-display font-bold mb-3">GEMBIRA</h3>
+                            <p id="act1-public-cue" class="text-base sm:text-lg font-bold bg-white/80 rounded-2xl p-4 max-w-md mx-auto mb-6">
+                                Ciri wajah: Mulut tersenyum lebar, pipi terangkat, dan mata bersinar!
+                            </p>
+                            <div class="flex flex-wrap justify-center gap-3">
+                                <button onclick="resetMysteryBox()" class="btn-3d bg-amber-500 hover:bg-amber-600 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                                    🎁 Buka Kad Seterusnya
+                                </button>
+                                <button onclick="navigateTo('act2')" class="btn-3d bg-emerald-600 hover:bg-emerald-700 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                                    Seterusnya: Detektif Emosi ➡️
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AKTIVITI 2: DETEKTIF EMOSI (PERKEMBANGAN) ==================== -->
+        <section id="view-act2" class="hidden space-y-6 animate-pop">
+            <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-emerald-300">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-emerald-100 pb-4 mb-6">
+                    <div>
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Fasa 2: Perkembangan • Mengenal Pasti Situasi</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-emerald-700 mt-1">🕵️ Detektif Emosi</h2>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-200 text-center">
+                            <span class="text-xs font-bold text-emerald-800 block">Kes Selesai</span>
+                            <span id="act2-progress" class="text-lg font-display font-bold text-emerald-600">1 / 6</span>
+                        </div>
+                        <div class="bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-center">
+                            <span class="text-xs font-bold text-amber-800 block">Bintang</span>
+                            <span id="act2-score" class="text-lg font-display font-bold text-amber-600">⭐ 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kad Situasi Detektif -->
+                <div class="bg-gradient-to-br from-emerald-50 to-sky-50 rounded-3xl p-6 sm:p-8 border-4 border-emerald-200 text-center mb-6 relative">
+                    <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-emerald-200 mb-4">
+                        <span class="text-xl">🔎</span>
+                        <span id="act2-case-label" class="font-display font-bold text-emerald-800">Situasi #1</span>
+                        <button onclick="speakCurrentSituation()" title="Baca Situasi (Suara)" class="ml-2 bg-sky-100 hover:bg-sky-200 text-sky-800 px-2.5 py-0.5 rounded-full text-xs font-bold flex items-center gap-1">
+                            🔊 Dengar
+                        </button>
+                    </div>
+
+                    <div id="act2-situation-icon" class="text-6xl sm:text-7xl mb-3">✏️</div>
+                    <h3 id="act2-situation-text" class="text-xl sm:text-3xl font-display font-bold text-slate-800 max-w-2xl mx-auto leading-snug">
+                        "Pensel warna baharu kamu diambil oleh kawan tanpa meminta izin."
+                    </h3>
+                    <p class="text-sm text-slate-500 mt-3 font-semibold">
+                        Pilih <strong>Sudut Emosi</strong> yang paling sesuai dengan perasaan kamu:
+                    </p>
+                </div>
+
+                <!-- 5 Sudut Emosi untuk Dipilih Murid -->
+                <div id="act2-corners" class="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 mb-6">
+                    <!-- Dijana melalui JS -->
+                </div>
+
+                <!-- Kotak Maklum Balas Fleksibel (Mematuhi catatan RPH: pelbagai emosi munasabah diterima!) -->
+                <div id="act2-feedback" class="hidden rounded-2xl p-5 border-4 mb-4 animate-pop">
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <div id="act2-fb-icon" class="text-5xl shrink-0">🌟</div>
+                        <div class="flex-grow text-center sm:text-left">
+                            <h4 id="act2-fb-title" class="text-xl font-display font-bold">Hebat Detektif!</h4>
+                            <p id="act2-fb-msg" class="text-sm sm:text-base mt-1 font-semibold"></p>
+                            <div id="act2-fb-alt" class="mt-2 text-xs sm:text-sm bg-white/80 p-2.5 rounded-xl font-bold text-slate-700 hidden"></div>
+                        </div>
+                        <button onclick="nextDetectiveCase()" class="btn-3d bg-emerald-600 hover:bg-emerald-700 text-white font-display font-bold px-6 py-3 rounded-2xl shrink-0">
+                            Situasi Seterusnya ➡️
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AKTIVITI 3: BALANG EMOSI (KEMUNCAK) ==================== -->
+        <section id="view-act3" class="hidden space-y-6 animate-pop">
+            <div class="bg-white/95 rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-purple-300">
+                <!-- Header & Kawalan Pemasa Undur (Cadangan Pensyarah RPH) -->
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-purple-100 pb-4 mb-5">
+                    <div>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Fasa 3: Kemuncak • Permainan Kumpulan</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-purple-700 mt-1">🫙 Balang Emosi Berkumpulan</h2>
+                    </div>
+
+                    <!-- Pemasa Undur Visual Lembut -->
+                    <div class="flex flex-wrap items-center gap-2 bg-purple-50 p-2.5 rounded-2xl border-2 border-purple-200">
+                        <span class="text-xs font-bold text-purple-900">⏱️ Masa:</span>
+                        <button onclick="setJarTimer(60)" class="px-2.5 py-1 rounded-xl bg-white hover:bg-purple-200 text-xs font-bold text-purple-800 border border-purple-300">1 Minit</button>
+                        <button onclick="setJarTimer(120)" class="px-2.5 py-1 rounded-xl bg-white hover:bg-purple-200 text-xs font-bold text-purple-800 border border-purple-300">2 Minit</button>
+                        <button onclick="setJarTimer(180)" class="px-2.5 py-1 rounded-xl bg-white hover:bg-purple-200 text-xs font-bold text-purple-800 border border-purple-300">3 Minit</button>
+                        <button onclick="setJarTimer(0)" class="px-2.5 py-1 rounded-xl bg-white hover:bg-purple-200 text-xs font-bold text-purple-800 border border-purple-300">Tanpa Had</button>
+                        <div id="jar-timer-display" class="ml-1 px-3 py-1 rounded-xl bg-purple-600 text-white font-display font-bold text-base">
+                            ∞
+                        </div>
+                        <button id="jar-timer-toggle" onclick="toggleJarTimer()" class="hidden px-2.5 py-1 rounded-xl bg-amber-400 text-slate-900 font-bold text-xs">
+                            Mula
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bar Visual Undur Lembut -->
+                <div id="jar-timer-bar-wrap" class="hidden w-full bg-purple-100 h-2.5 rounded-full overflow-hidden mb-4">
+                    <div id="jar-timer-bar" class="bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400 h-full transition-all duration-1000" style="width: 100%"></div>
+                </div>
+
+                <!-- Papan Markah 4 Kumpulan -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
+                    <button onclick="selectActiveGroup(1)" id="group-card-1" class="group-tab p-3 rounded-2xl border-4 border-rose-500 bg-rose-100 text-left transition shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display font-bold text-rose-900 text-sm sm:text-base">🔴 Kumpulan 1</span>
+                            <span id="group-score-1" class="bg-white px-2.5 py-0.5 rounded-full font-display font-bold text-rose-700 text-sm">⭐ 0</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-rose-700 block mt-0.5">⭐ Giliran Aktif</span>
+                    </button>
+                    <button onclick="selectActiveGroup(2)" id="group-card-2" class="group-tab p-3 rounded-2xl border-2 border-slate-200 bg-white text-left transition opacity-80 hover:opacity-100">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display font-bold text-sky-900 text-sm sm:text-base">🔵 Kumpulan 2</span>
+                            <span id="group-score-2" class="bg-sky-50 px-2.5 py-0.5 rounded-full font-display font-bold text-sky-700 text-sm">⭐ 0</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-400 block mt-0.5">Klik untuk pilih</span>
+                    </button>
+                    <button onclick="selectActiveGroup(3)" id="group-card-3" class="group-tab p-3 rounded-2xl border-2 border-slate-200 bg-white text-left transition opacity-80 hover:opacity-100">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display font-bold text-emerald-900 text-sm sm:text-base">🟢 Kumpulan 3</span>
+                            <span id="group-score-3" class="bg-emerald-50 px-2.5 py-0.5 rounded-full font-display font-bold text-emerald-700 text-sm">⭐ 0</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-400 block mt-0.5">Klik untuk pilih</span>
+                    </button>
+                    <button onclick="selectActiveGroup(4)" id="group-card-4" class="group-tab p-3 rounded-2xl border-2 border-slate-200 bg-white text-left transition opacity-80 hover:opacity-100">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display font-bold text-amber-900 text-sm sm:text-base">🟡 Kumpulan 4</span>
+                            <span id="group-score-4" class="bg-amber-50 px-2.5 py-0.5 rounded-full font-display font-bold text-amber-700 text-sm">⭐ 0</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-400 block mt-0.5">Klik untuk pilih</span>
+                    </button>
+                </div>
+
+                <!-- Arahan Mesra Sentuh & Kawalan Sampul 25 Situasi -->
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3">
+                    <div class="space-y-1">
+                        <p class="text-xs sm:text-sm font-bold text-amber-900">
+                            ✉️ <strong>Buka Sampul Situasi:</strong> Klik sampul di bawah, kemudian seret (atau klik) <strong>Balang Emosi</strong> yang betul!
+                        </p>
+                        <div class="flex flex-wrap items-center gap-2 text-xs font-extrabold">
+                            <span id="jar-remaining-badge" class="bg-purple-600 text-white px-3 py-1 rounded-full shadow-sm">
+                                📦 Baki Situasi: 25 / 25
+                            </span>
+                            <span id="jar-completed-badge" class="bg-emerald-600 text-white px-3 py-1 rounded-full shadow-sm">
+                                ✅ Selesai: 0 / 25
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="drawEnvelopeSituation()" id="btn-open-envelope" class="btn-3d bg-amber-400 hover:bg-amber-500 text-amber-950 font-display font-bold text-xs sm:text-sm px-4 py-2 rounded-xl flex items-center gap-1.5">
+                            ✉️ Buka Sampul Baharu
+                        </button>
+                        <button onclick="resetJarGame()" class="text-xs bg-white hover:bg-amber-100 text-amber-800 font-bold px-3 py-2 rounded-xl border border-amber-300">
+                            🔄 Kocok Semula / Reset 25 Situasi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rak Kad Situasi (Sampul Rawak) -->
+                <div id="jar-cards-pool" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-7 min-h-[120px]">
+                    <!-- Kad situasi dijana oleh JS -->
+                </div>
+
+                <!-- Maklum Balas Pantas Balang -->
+                <div id="jar-feedback-banner" class="hidden text-center p-3 rounded-2xl font-display font-bold text-base sm:text-lg mb-5 animate-pop"></div>
+
+                <!-- 5 Balang Emosi -->
+                <div class="mb-2 flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500">💡 Klik mana-mana balang (ketika tiada kad dipilih) atau tekan ikon 👁️ untuk lihat isi kad di dalamnya.</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
+                    <!-- Balang dijana oleh JS -->
+                    <div id="jars-container" class="col-span-2 sm:col-span-5 grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4"></div>
+                </div>
+            </div>
+
+            <!-- Modal Lihat Isi Balang Emosi -->
+            <div id="jar-inspect-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+                <div class="bg-white rounded-3xl max-w-lg w-full p-6 border-4 border-purple-300 shadow-2xl animate-pop">
+                    <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3 mb-4">
+                        <div class="flex items-center gap-2">
+                            <span id="modal-jar-emoji" class="text-4xl">😊</span>
+                            <div>
+                                <h3 id="modal-jar-title" class="text-xl font-display font-bold text-slate-800">Isi Balang Gembira</h3>
+                                <p id="modal-jar-count" class="text-xs font-bold text-slate-500">0 situasi terkumpul</p>
+                            </div>
+                        </div>
+                        <button onclick="closeJarInspectModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-bold text-slate-700">✕</button>
+                    </div>
+                    <div id="modal-jar-list" class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                        <!-- Senarai situasi dalam balang -->
+                    </div>
+                    <div class="mt-5 text-right">
+                        <button onclick="closeJarInspectModal()" class="btn-3d bg-purple-600 hover:bg-purple-700 text-white font-display font-bold px-5 py-2 rounded-xl text-sm">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AKTIVITI 4: RODA GERGASI EMOSI (PENUTUP) ==================== -->
+        <section id="view-act4" class="hidden space-y-6 animate-pop">
+            <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-pink-300">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-pink-100 pb-4 mb-6">
+                    <div>
+                        <span class="bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full">Fasa 4: Penutup • Perkongsian Pengalaman</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-pink-700 mt-1">🎡 Roda Gergasi Emosi</h2>
+                    </div>
+                    <button onclick="navigateTo('summary')" class="btn-3d bg-yellow-400 hover:bg-yellow-500 text-yellow-950 font-display font-bold px-4 py-2 rounded-2xl text-sm">
+                        🏅 Ke Skrin Rumusan ➡️
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Roda Putaran Interaktif -->
+                    <div class="flex flex-col items-center justify-center relative">
+                        <!-- Penunjuk Atas -->
+                        <div class="text-4xl -mb-3 z-10 drop-shadow">🔻</div>
+                        <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full border-8 border-pink-400 shadow-2xl bg-white flex items-center justify-center overflow-hidden">
+                            <canvas id="wheel-canvas" class="w-full h-full"></canvas>
+                            <button onclick="spinEmotionWheel()" class="absolute w-20 h-20 rounded-full bg-white border-4 border-pink-500 shadow-lg font-display font-bold text-pink-700 text-sm hover:scale-105 transition flex items-center justify-center">
+                                PUSING!
+                            </button>
+                        </div>
+                        <button onclick="spinEmotionWheel()" class="btn-3d mt-5 bg-pink-500 hover:bg-pink-600 text-white font-display font-bold text-lg px-8 py-3 rounded-2xl">
+                            🎡 Pusing Roda Gergasi!
+                        </button>
+                    </div>
+
+                    <!-- Kad Soalan Perkongsian Murid -->
+                    <div>
+                        <div id="wheel-prompt-card" class="bg-pink-50 border-4 border-pink-200 rounded-3xl p-6 sm:p-8 text-center">
+                            <div class="text-6xl mb-3 animate-float">🗣️</div>
+                            <h3 class="text-2xl font-display font-bold text-pink-800 mb-2">Giliran Berkongsi Cerita!</h3>
+                            <p class="text-slate-600 text-sm sm:text-base font-semibold">
+                                Pilih seorang murid secara rawak, tekan butang <strong>Pusing Roda Gergasi</strong>, dan minta murid berkongsi pengalaman berdasarkan emosi yang terpilih!
+                            </p>
+                        </div>
+
+                        <div id="wheel-result-card" class="hidden rounded-3xl p-6 sm:p-8 border-4 shadow-lg text-center">
+                            <div id="wheel-res-emoji" class="text-7xl mb-2">😊</div>
+                            <h3 id="wheel-res-title" class="text-3xl font-display font-bold mb-3">Emosi: GEMBIRA</h3>
+                            <p id="wheel-res-question" class="text-lg sm:text-xl font-bold text-slate-800 bg-white/85 p-4 rounded-2xl mb-5">
+                                "Ceritakan satu perkara yang membuatkan kamu berasa GEMBIRA hari ini!"
+                            </p>
+                            <button onclick="spinEmotionWheel()" class="btn-3d bg-pink-600 hover:bg-pink-700 text-white font-display font-bold px-6 py-2.5 rounded-xl">
+                                🔄 Pusing untuk Murid Seterusnya
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SKRIN TAMAT: RUMUSAN PEMBELAJARAN & LENCANA ==================== -->
+        <section id="view-summary" class="hidden space-y-6 animate-pop">
+            <div class="bg-white/95 rounded-3xl p-6 sm:p-10 shadow-2xl border-4 border-yellow-400 text-center">
+                <span class="inline-block bg-yellow-100 text-yellow-900 font-bold px-4 py-1 rounded-full text-xs sm:text-sm mb-2 border border-yellow-300">
+                    Rumusan Pembelajaran • Standard Prestasi Tahap Penguasaan 1
+                </span>
+                <h2 id="summary-congrats-title" class="text-3xl sm:text-5xl font-display font-bold text-sky-800 mb-2">
+                    Tahniah Kelas 1 Bijak! 🎉
+                </h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg mb-6">
+                    Hari ini kita telah belajar mengenali <strong>5 jenis emosi</strong> utama dalam kehidupan seharian kita. Semua perasaan ini adalah normal dan boleh diurus dengan baik!
+                </p>
+
+                <!-- Lencana Pencapaian Hasil Pembelajaran (Sekurang-kurangnya 3 daripada 5 emosi) -->
+                <div id="badge-achievement-box" class="max-w-lg mx-auto bg-gradient-to-b from-amber-100 to-yellow-200 border-4 border-amber-400 rounded-3xl p-6 mb-8 shadow-lg">
+                    <div id="badge-medal-icon" class="text-7xl mb-2 animate-float">🏅</div>
+                    <h3 id="badge-title" class="text-2xl sm:text-3xl font-display font-bold text-amber-900">
+                        Lencana Wira Emosi 1 Bijak!
+                    </h3>
+                    <p id="badge-subtitle" class="text-sm sm:text-base font-bold text-amber-800 mt-1">
+                        Pencapaian: 5 / 5 Emosi Dikenal Pasti (Tahap Penguasaan 1 Tercapai!)
+                    </p>
+                </div>
+
+                <!-- Ringkasan 5 Emosi -->
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-8 text-left">
+                    <div class="bg-gembira-light border-2 border-gembira rounded-2xl p-4">
+                        <div class="text-4xl mb-1">😊</div>
+                        <h4 class="font-display font-bold text-lg text-gembira-dark">1. Gembira</h4>
+                        <p class="text-xs font-semibold text-slate-700 mt-1">Perasaan seronok dan suka hati apabila mendapat sesuatu yang baik.</p>
+                    </div>
+                    <div class="bg-sedih-light border-2 border-sedih rounded-2xl p-4">
+                        <div class="text-4xl mb-1">😢</div>
+                        <h4 class="font-display font-bold text-lg text-sedih-dark">2. Sedih</h4>
+                        <p class="text-xs font-semibold text-slate-700 mt-1">Perasaan kecewa atau berduka apabila kehilangan sesuatu.</p>
+                    </div>
+                    <div class="bg-takut-light border-2 border-takut rounded-2xl p-4">
+                        <div class="text-4xl mb-1">😨</div>
+                        <h4 class="font-display font-bold text-lg text-takut-dark">3. Takut</h4>
+                        <p class="text-xs font-semibold text-slate-700 mt-1">Perasaan gementar apabila berdepan bahaya atau tempat gelap.</p>
+                    </div>
+                    <div class="bg-marah-light border-2 border-marah rounded-2xl p-4">
+                        <div class="text-4xl mb-1">😠</div>
+                        <h4 class="font-display font-bold text-lg text-marah-dark">4. Marah</h4>
+                        <p class="text-xs font-semibold text-slate-700 mt-1">Perasaan tidak puas hati apabila diganggu atau diperlakukan tidak adil.</p>
+                    </div>
+                    <div class="bg-malu-light border-2 border-malu rounded-2xl p-4">
+                        <div class="text-4xl mb-1">😳</div>
+                        <h4 class="font-display font-bold text-lg text-malu-dark">5. Malu</h4>
+                        <p class="text-xs font-semibold text-slate-700 mt-1">Perasaan segan apabila menjadi tumpuan ramai atau tersilap langkah.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="downloadStudentCertificate()" class="btn-3d bg-emerald-500 hover:bg-emerald-600 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                        🖼️ Simpan Gambar Sijil (Hantar ke Cikgu)
+                    </button>
+                    <button onclick="triggerConfetti(); playSound('win');" class="btn-3d bg-amber-500 hover:bg-amber-600 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                        🎊 Raikan Kejayaan Kelas!
+                    </button>
+                    <button onclick="navigateTo('home')" class="btn-3d bg-sky-600 hover:bg-sky-700 text-white font-display font-bold text-lg px-6 py-3 rounded-2xl">
+                        🏠 Kembali ke Menu Utama
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Ringkas -->
+    <footer class="text-center py-4 text-xs font-bold text-slate-500">
+        Kembara Dunia Emosi • Pendidikan Kesihatan Tahun 1 (KSSR Semakan) • SP 4.1.1
+    </footer>
+
+    <!-- ==================== MODAL REKOD PENGLIBATAN MURID (PAPARAN GURU) ==================== -->
+    <div id="teacher-records-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 border-4 border-emerald-400 shadow-2xl animate-pop my-auto">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-3xl">📊</span>
+                    <div>
+                        <h3 class="text-xl font-display font-bold text-emerald-800">Senarai Rekod Murid Bermain</h3>
+                        <p class="text-xs font-bold text-slate-500">Pemantauan Pentaksiran Bilik Darjah (PBD) • Tahun 1 Bijak</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="exportRecordsCSV()" class="bg-sky-100 hover:bg-sky-200 text-sky-800 font-bold px-3 py-1.5 rounded-xl text-xs flex items-center gap-1">
+                        📥 Muat Turun Excel (.CSV)
+                    </button>
+                    <button onclick="closeTeacherRecordsModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-bold text-slate-700">✕</button>
+                </div>
+            </div>
+
+            <!-- Ringkasan Statistik Kelas -->
+            <div class="grid grid-cols-3 gap-3 mb-4 text-center">
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+                    <span class="text-xs font-bold text-emerald-700 block">Jumlah Murid Cuba</span>
+                    <span id="stat-total-students" class="text-2xl font-display font-bold text-emerald-900">0</span>
+                </div>
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3">
+                    <span class="text-xs font-bold text-amber-700 block">Capai TP1 (≥3 Emosi)</span>
+                    <span id="stat-tp1-students" class="text-2xl font-display font-bold text-amber-900">0</span>
+                </div>
+                <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-3">
+                    <span class="text-xs font-bold text-sky-700 block">Status Sambungan</span>
+                    <span id="stat-sync-status" class="text-xs sm:text-sm font-display font-bold text-sky-800 mt-1 block">Menyambung...</span>
+                </div>
+            </div>
+
+            <!-- Jadual Senarai Murid -->
+            <div class="max-h-80 overflow-y-auto border-2 border-slate-200 rounded-2xl">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-100 text-slate-700 text-xs uppercase font-extrabold sticky top-0">
+                        <tr>
+                            <th class="py-2.5 px-3">Bil</th>
+                            <th class="py-2.5 px-3">Nama Murid</th>
+                            <th class="py-2.5 px-3 text-center">Emosi Dikenali</th>
+                            <th class="py-2.5 px-3 text-center">Bintang Detektif</th>
+                            <th class="py-2.5 px-3 text-center">Status PBD</th>
+                            <th class="py-2.5 px-3 text-right">Masa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacher-records-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm font-bold text-slate-700">
+                        <tr>
+                            <td colspan="6" class="py-8 text-center text-slate-400">Belum ada murid yang mendaftar nama lagi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL TULIS NAMA MURID (SEBELUM BERMAIN) ==================== -->
+    <div id="player-name-modal" class="fixed inset-0 z-50 bg-sky-950/75 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-center animate-pop">
+            <div class="text-6xl sm:text-7xl mb-2 animate-float">🎒</div>
+            <span class="inline-block bg-sky-100 text-sky-800 font-extrabold px-3 py-1 rounded-full text-xs uppercase tracking-wider mb-2">
+                Pendidikan Kesihatan • Tahun 1 Bijak
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-sky-800 mb-2">
+                Hai! Siapa Nama Kamu? 😊
+            </h2>
+            <p class="text-sm text-slate-600 font-semibold mb-5">
+                Tulis nama kamu di bawah sebelum memulakan pengembaraan mengenali emosi!
+            </p>
+
+            <form onsubmit="submitPlayerName(event)" class="space-y-4">
+                <div>
+                    <input id="player-name-input" type="text" maxlength="28" required placeholder="Contoh: Aiman / Siti / Rayyan" autocomplete="off" class="w-full text-center text-lg sm:text-xl font-display font-bold text-slate-800 bg-amber-50 border-4 border-amber-300 focus:border-sky-500 focus:bg-white rounded-2xl px-4 py-3.5 outline-none transition shadow-inner">
+                </div>
+
+                <button type="submit" class="btn-3d w-full bg-emerald-500 hover:bg-emerald-600 text-white font-display font-bold text-lg sm:text-xl py-3.5 px-6 rounded-2xl shadow-lg">
+                    🚀 Mula Bermain Sekarang!
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL KONGSI PAUTAN & PENJANA KOD QR ==================== -->
+    <div id="share-qr-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 border-4 border-sky-400 shadow-2xl animate-pop my-auto">
+            <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-3xl">📱</span>
+                    <div>
+                        <h3 class="text-xl font-display font-bold text-sky-800">Kongsi Permainan & Kod QR</h3>
+                        <p class="text-xs font-bold text-slate-500">Untuk imbasan murid Tahun 1 Bijak</p>
+                    </div>
+                </div>
+                <button onclick="closeShareModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-bold text-slate-700">✕</button>
+            </div>
+
+            <!-- Langkah 1: Muat turun fail HTML -->
+            <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 mb-4 space-y-2">
+                <p class="text-xs font-extrabold uppercase tracking-wider text-amber-800">Langkah 1: Simpan & Muat Naik Permainan</p>
+                <p class="text-xs text-slate-700 font-semibold leading-relaxed">
+                    Permainan ini perlu dimuat naik ke laman web percuma seperti <strong>app.netlify.com/drop</strong> atau <strong>tiiny.host</strong> supaya murid boleh membukanya di peranti masing-masing.
+                </p>
+                <button type="button" onclick="downloadGameHTML()" class="btn-3d w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-display font-bold py-2 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2">
+                    ⬇️ Muat Turun Fail Permainan (.html)
+                </button>
+            </div>
+
+            <!-- Langkah 2: Jana Kod QR daripada URL -->
+            <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 space-y-3">
+                <p class="text-xs font-extrabold uppercase tracking-wider text-sky-800">Langkah 2: Tampal Pautan (URL) & Jana Kod QR</p>
+                <div class="flex gap-2">
+                    <input id="qr-url-input" type="url" placeholder="Contoh: https://kembara-emosi.netlify.app" oninput="generateQRCode()" class="flex-grow bg-white border-2 border-sky-300 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 focus:outline-none focus:border-sky-500">
+                    <button type="button" onclick="generateQRCode()" class="bg-sky-600 hover:bg-sky-700 text-white font-display font-bold px-4 py-2 rounded-xl text-xs sm:text-sm shrink-0">
+                        Jana QR
+                    </button>
+                </div>
+
+                <!-- Paparan Kod QR -->
+                <div class="flex flex-col items-center justify-center bg-white rounded-2xl p-4 border-2 border-dashed border-sky-300">
+                    <img id="qr-code-img" src="" alt="Kod QR Permainan" class="w-48 h-48 rounded-xl hidden">
+                    <p id="qr-placeholder-text" class="text-xs text-slate-400 font-bold text-center py-8">
+                        Kod QR akan terpapar di sini sebaik sahaja pautan laman web dimasukkan.
+                    </p>
+                    <p id="qr-caption-text" class="hidden text-xs font-display font-bold text-sky-800 mt-2 text-center">
+                        Imbas untuk main Kembara Dunia Emosi! 🌈
+                    </p>
+                </div>
+
+                <div id="qr-action-buttons" class="hidden flex gap-2">
+                    <button type="button" onclick="copyShareLink()" class="flex-1 bg-white hover:bg-slate-100 text-slate-700 border-2 border-slate-300 font-bold py-2 px-3 rounded-xl text-xs">
+                        📋 Salin Pautan
+                    </button>
+                    <button type="button" onclick="downloadQRImage()" class="flex-1 btn-3d bg-emerald-500 hover:bg-emerald-600 text-white font-display font-bold py-2 px-3 rounded-xl text-xs">
+                        🖼️ Simpan Gambar QR
+                    </button>
+                </div>
+                <p id="share-copy-status" class="hidden text-center text-xs font-bold text-emerald-700"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SKRIP INTERAKTIF & AUDIO ==================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'kembara-emosi-tahun1';
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        window.allStudentRecords = [];
+
+        async function initCloudRecords() {
+            const statusEl = document.getElementById('stat-sync-status');
+            try {
+                if (typeof __firebase_config === 'undefined') {
+                    if (statusEl) statusEl.textContent = 'Mod Sesi Tempatan';
+                    return;
+                }
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                currentUser = auth.currentUser;
+                if (statusEl) statusEl.textContent = '🟢 Rekod Langsung Aktif';
+
+                if (!currentUser) return;
+                const recordsRef = collection(db, 'artifacts', appId, 'public', 'data', 'rekod_murid');
+                onSnapshot(recordsRef, (snapshot) => {
+                    const list = [];
+                    snapshot.forEach((docSnap) => {
+                        list.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    list.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+                    window.allStudentRecords = list;
+                    if (typeof window.renderTeacherRecordsTable === 'function') {
+                        window.renderTeacherRecordsTable();
+                    }
+                }, (error) => {
+                    console.error('Ralat membaca rekod:', error);
+                    if (statusEl) statusEl.textContent = '⚠️ Ralat Sambungan';
+                });
+            } catch (err) {
+                console.warn('Simpanan awan tidak tersedia:', err);
+                if (statusEl) statusEl.textContent = 'Mod Sesi Tempatan';
+            }
+        }
+
+        window.syncStudentProgressToCloud = async function(payload) {
+            if (!payload || !payload.playerName) return;
+            const sessionId = payload.sessionId || 'sesi-' + Date.now();
+            const recordData = {
+                sessionId: sessionId,
+                playerName: payload.playerName,
+                playerAvatar: payload.playerAvatar || '👦',
+                learnedCount: payload.learnedCount || 0,
+                learnedList: payload.learnedList || [],
+                detectiveStars: payload.detectiveStars || 0,
+                completedSummary: !!payload.completedSummary,
+                updatedAt: Date.now(),
+                timeLabel: new Date().toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' })
+            };
+
+            // Kemas kini senarai dalam memori juga supaya sentiasa responsif
+            const existingIdx = window.allStudentRecords.findIndex(r => r.sessionId === sessionId);
+            if (existingIdx >= 0) {
+                window.allStudentRecords[existingIdx] = recordData;
+            } else {
+                window.allStudentRecords.unshift(recordData);
+            }
+            if (typeof window.renderTeacherRecordsTable === 'function') {
+                window.renderTeacherRecordsTable();
+            }
+
+            if (!db || !currentUser) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'rekod_murid', sessionId);
+                await setDoc(docRef, recordData, { merge: true });
+            } catch (e) {
+                console.error('Gagal menyimpan rekod murid:', e);
+            }
+        };
+
+        initCloudRecords();
+    </script>
+
+    <script>
+        /* =========================================================================
+           1. DATA TERAS EMOSI & SITUASI (BERDASARKAN RPH PENDIDIKAN KESIHATAN THN 1)
+           ========================================================================= */
+        const EMOTIONS = {
+            gembira: {
+                id: 'gembira',
+                name: 'Gembira',
+                emoji: '😊',
+                bgLight: 'bg-gembira-light',
+                bgSolid: 'bg-yellow-400',
+                border: 'border-gembira',
+                textDark: 'text-gembira-dark',
+                wheelColor: '#FDE047',
+                cue: 'Mulut tersenyum lebar, pipi terangkat, dan mata bersinar ceria!',
+                situationExample: 'Kamu mendapat hadiah hari jadi daripada ibu dan ayah, atau dipuji oleh cikgu di dalam kelas.',
+                illustrationSVG: `
+                    <svg viewBox="0 0 160 160" class="w-full h-full">
+                        <rect width="160" height="160" rx="20" fill="#FEF9C3"/>
+                        <!-- Bintang & Konfeti -->
+                        <text x="18" y="34" font-size="20">✨</text>
+                        <text x="122" y="34" font-size="20">🎈</text>
+                        <!-- Wajah Murid Gembira -->
+                        <circle cx="80" cy="72" r="36" fill="#FDE68A" stroke="#D97706" stroke-width="3"/>
+                        <path d="M52 55 Q80 28 108 55" fill="#1E293B"/>
+                        <circle cx="68" cy="68" r="4" fill="#1E293B"/>
+                        <circle cx="92" cy="68" r="4" fill="#1E293B"/>
+                        <circle cx="60" cy="78" r="5" fill="#FCA5A5" opacity="0.7"/>
+                        <circle cx="100" cy="78" r="5" fill="#FCA5A5" opacity="0.7"/>
+                        <path d="M66 82 Q80 98 94 82 Z" fill="#EF4444" stroke="#991B1B" stroke-width="2"/>
+                        <!-- Kotak Hadiah -->
+                        <rect x="52" y="112" width="56" height="36" rx="6" fill="#F43F5E" stroke="#9F1239" stroke-width="2.5"/>
+                        <rect x="76" y="112" width="8" height="36" fill="#FACC15"/>
+                        <rect x="52" y="126" width="56" height="8" fill="#FACC15"/>
+                    </svg>
+                `,
+                question: 'Ceritakan satu perkara yang membuatkan kamu berasa GEMBIRA hari ini!'
+            },
+            sedih: {
+                id: 'sedih',
+                name: 'Sedih',
+                emoji: '😢',
+                bgLight: 'bg-sedih-light',
+                bgSolid: 'bg-blue-400',
+                border: 'border-sedih',
+                textDark: 'text-sedih-dark',
+                wheelColor: '#93C5FD',
+                cue: 'Bibir melengkung ke bawah, bahu menunduk, dan mata berkaca seperti mahu menangis.',
+                situationExample: 'Aiskrim kesukaan kamu terjatuh ke lantai atau mainan kesayangan kamu rosak.',
+                illustrationSVG: `
+                    <svg viewBox="0 0 160 160" class="w-full h-full">
+                        <rect width="160" height="160" rx="20" fill="#DBEAFE"/>
+                        <!-- Awan Mendung -->
+                        <text x="18" y="34" font-size="20">💧</text>
+                        <text x="124" y="34" font-size="20">🍦</text>
+                        <!-- Wajah Murid Sedih -->
+                        <circle cx="80" cy="74" r="36" fill="#FDE68A" stroke="#2563EB" stroke-width="3"/>
+                        <path d="M52 57 Q80 30 108 57" fill="#1E293B"/>
+                        <path d="M60 63 L72 60" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M100 63 L88 60" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="68" cy="71" r="4" fill="#1E293B"/>
+                        <circle cx="92" cy="71" r="4" fill="#1E293B"/>
+                        <!-- Air Mata -->
+                        <path d="M64 78 Q60 88 64 92 Q68 88 64 78 Z" fill="#38BDF8"/>
+                        <path d="M96 78 Q92 88 96 92 Q100 88 96 78 Z" fill="#38BDF8"/>
+                        <!-- Mulut Sedih -->
+                        <path d="M68 94 Q80 83 92 94" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Aiskrim Jatuh di Bawah -->
+                        <polygon points="62,142 84,126 88,136" fill="#D97706"/>
+                        <circle cx="92" cy="133" r="10" fill="#F472B6"/>
+                    </svg>
+                `,
+                question: 'Apakah perkara yang pernah membuatkan kamu berasa SEDIH, dan siapa yang memujuk kamu?'
+            },
+            takut: {
+                id: 'takut',
+                name: 'Takut',
+                emoji: '😨',
+                bgLight: 'bg-takut-light',
+                bgSolid: 'bg-purple-400',
+                border: 'border-takut',
+                textDark: 'text-takut-dark',
+                wheelColor: '#D8B4FE',
+                cue: 'Mata terbeliak besar, kening terangkat, dan tangan menutup mulut atau memeluk tubuh.',
+                situationExample: 'Terdengar bunyi guruh dan kilat yang kuat pada waktu malam yang gelap gelita.',
+                illustrationSVG: `
+                    <svg viewBox="0 0 160 160" class="w-full h-full">
+                        <rect width="160" height="160" rx="20" fill="#312E81"/>
+                        <!-- Kilat & Hujan -->
+                        <text x="16" y="36" font-size="22">⚡</text>
+                        <text x="122" y="36" font-size="22">⛈️</text>
+                        <!-- Wajah Murid Takut -->
+                        <circle cx="80" cy="82" r="36" fill="#FDE68A" stroke="#C084FC" stroke-width="3"/>
+                        <path d="M52 65 Q80 38 108 65" fill="#1E293B"/>
+                        <path d="M60 68 Q68 62 74 68" fill="none" stroke="#1E293B" stroke-width="2.5"/>
+                        <path d="M86 68 Q92 62 100 68" fill="none" stroke="#1E293B" stroke-width="2.5"/>
+                        <circle cx="68" cy="78" r="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+                        <circle cx="68" cy="78" r="2.5" fill="#1E293B"/>
+                        <circle cx="92" cy="78" r="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+                        <circle cx="92" cy="78" r="2.5" fill="#1E293B"/>
+                        <!-- Mulut Terkejut/Takut -->
+                        <ellipse cx="80" cy="99" rx="8" ry="10" fill="#1E293B"/>
+                        <!-- Tangan di Pipi -->
+                        <ellipse cx="48" cy="96" rx="7" ry="11" fill="#FCD34D" stroke="#B45309" stroke-width="2"/>
+                        <ellipse cx="112" cy="96" rx="7" ry="11" fill="#FCD34D" stroke="#B45309" stroke-width="2"/>
+                    </svg>
+                `,
+                question: 'Apakah benda atau keadaan yang membuatkan kamu berasa TAKUT?'
+            },
+            marah: {
+                id: 'marah',
+                name: 'Marah',
+                emoji: '😠',
+                bgLight: 'bg-marah-light',
+                bgSolid: 'bg-red-400',
+                border: 'border-marah',
+                textDark: 'text-marah-dark',
+                wheelColor: '#FCA5A5',
+                cue: 'Kening berkerut rapat ke tengah, mulut ketat atau muncung, dan tangan bercekak pinggang.',
+                situationExample: 'Kawan merampas pensel warna kamu tanpa meminta izin atau adik menconteng buku sekolah kamu.',
+                illustrationSVG: `
+                    <svg viewBox="0 0 160 160" class="w-full h-full">
+                        <rect width="160" height="160" rx="20" fill="#FEE2E2"/>
+                        <!-- Simbol Marah -->
+                        <text x="18" y="36" font-size="22">💢</text>
+                        <text x="122" y="36" font-size="22">🖍️</text>
+                        <!-- Wajah Murid Marah -->
+                        <circle cx="80" cy="82" r="36" fill="#FCA5A5" stroke="#DC2626" stroke-width="3"/>
+                        <path d="M52 65 Q80 38 108 65" fill="#1E293B"/>
+                        <!-- Kening Berkerut Tajam -->
+                        <path d="M58 68 L74 75" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M102 68 L86 75" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="68" cy="80" r="4" fill="#1E293B"/>
+                        <circle cx="92" cy="80" r="4" fill="#1E293B"/>
+                        <!-- Mulut Ketat -->
+                        <path d="M66 99 Q80 91 94 99" fill="none" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
+                        <!-- Buku Terconteng di Bawah -->
+                        <rect x="54" y="122" width="52" height="26" rx="4" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+                        <path d="M60 130 Q72 142 82 128 T100 138" fill="none" stroke="#EF4444" stroke-width="2.5"/>
+                    </svg>
+                `,
+                question: 'Jika kamu berasa MARAH, bagaimana cara yang baik untuk menenangkan diri?'
+            },
+            malu: {
+                id: 'malu',
+                name: 'Malu',
+                emoji: '😳',
+                bgLight: 'bg-malu-light',
+                bgSolid: 'bg-pink-400',
+                border: 'border-malu',
+                textDark: 'text-malu-dark',
+                wheelColor: '#F9A8D4',
+                cue: 'Pipi kemerahan, kepala menunduk sedikit, dan menutup separuh wajah dengan tangan.',
+                situationExample: 'Tersalah memakai stokin berlainan warna ke sekolah atau terjatuh di hadapan rakan-rakan.',
+                illustrationSVG: `
+                    <svg viewBox="0 0 160 160" class="w-full h-full">
+                        <rect width="160" height="160" rx="20" fill="#FCE7F3"/>
+                        <!-- Simbol Segan -->
+                        <text x="18" y="36" font-size="20">💦</text>
+                        <text x="122" y="36" font-size="20">🧦</text>
+                        <!-- Wajah Murid Malu -->
+                        <circle cx="80" cy="80" r="36" fill="#FDE68A" stroke="#DB2777" stroke-width="3"/>
+                        <path d="M52 63 Q80 36 108 63" fill="#1E293B"/>
+                        <circle cx="68" cy="76" r="4" fill="#1E293B"/>
+                        <circle cx="92" cy="76" r="4" fill="#1E293B"/>
+                        <!-- Pipi Merah Padam -->
+                        <ellipse cx="60" cy="86" rx="8" ry="5" fill="#F43F5E" opacity="0.75"/>
+                        <ellipse cx="100" cy="86" rx="8" ry="5" fill="#F43F5E" opacity="0.75"/>
+                        <!-- Mulut Kecil Segan -->
+                        <path d="M74 94 Q80 98 86 94" fill="none" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Tangan Menutup Separuh Muka -->
+                        <rect x="64" y="96" width="32" height="24" rx="10" fill="#FCD34D" stroke="#B45309" stroke-width="2"/>
+                    </svg>
+                `,
+                question: 'Bilakah kali terakhir kamu berasa MALU di sekolah atau di rumah?'
+            }
+        };
+
+        // Situasi Aktiviti 2: Detektif Emosi (Menyokong jawapan fleksibel seperti dalam catatan RPH!)
+        const DETECTIVE_CASES = [
+            {
+                icon: '✏️',
+                text: 'Pensel warna baharu kamu diambil oleh kawan tanpa meminta izin.',
+                accepted: ['marah', 'sedih'],
+                primary: 'marah',
+                explanation: 'Betul! Apabila barang kita diambil tanpa izin, kita boleh berasa MARAH atau SEDIH. Kedua-dua perasaan itu normal dan wajar!',
+                altNote: '💡 Nota Cikgu: Kamu boleh beritahu kawan dengan sopan supaya memulangkan pensel tersebut.'
+            },
+            {
+                icon: '🚲',
+                text: 'Ayah dan ibu menghadiahkan sebuah basikal baharu sempena hari jadi kamu.',
+                accepted: ['gembira'],
+                primary: 'gembira',
+                explanation: 'Tepat sekali! Menerima hadiah istimewa membuatkan hati kita sangat GEMBIRA dan bersyukur.',
+                altNote: '💡 Jangan lupa ucapkan "Terima kasih, ayah dan ibu!"'
+            },
+            {
+                icon: '⛈️',
+                text: 'Terdengar bunyi guruh yang sangat kuat dan kilat pada waktu malam yang gelap.',
+                accepted: ['takut'],
+                primary: 'takut',
+                explanation: 'Syabas! Bunyi kuat dan suasana gelap secara tiba-tiba memang membuatkan kanak-kanak berasa TAKUT.',
+                altNote: '💡 Jika takut pada waktu malam, kamu boleh berjumpa ibu bapa.'
+            },
+            {
+                icon: '🍦',
+                text: 'Aiskrim kesukaan kamu terjatuh ke atas lantai sebelum sempat kamu memakannya.',
+                accepted: ['sedih'],
+                primary: 'sedih',
+                explanation: 'Betul! Kehilangan sesuatu yang kita suka memang membuatkan kita berasa SEDIH dan kecewa.',
+                altNote: '💡 Tidak mengapa, kamu boleh tarik nafas dalam-dalam dan beritahu ibu bapa.'
+            },
+            {
+                icon: '👟',
+                text: 'Kamu tersadung kaki lalu terjatuh di hadapan kawan-kawan semasa perhimpunan.',
+                accepted: ['malu', 'sedih'],
+                primary: 'malu',
+                explanation: 'Tepat sekali! Apabila tersilap langkah di hadapan ramai orang, kita mudah berasa MALU atau SEDIH.',
+                altNote: '💡 Kawan yang baik tidak akan mentertawakan rakan yang terjatuh.'
+            },
+            {
+                icon: '🏆',
+                text: 'Cikgu memuji lukisan kamu sangat cantik dan menampalnya di papan kenyataan kelas.',
+                accepted: ['gembira'],
+                primary: 'gembira',
+                explanation: 'Hebat! Usaha kita yang dihargai oleh guru membuatkan kita berasa sangat GEMBIRA dan bersemangat!',
+                altNote: '💡 Teruskan berusaha bersungguh-sungguh dalam pelajaran!'
+            }
+        ];
+
+        // Kad Situasi Aktiviti 3: Balang Emosi (25 Situasi Unik & Kontekstual Tahun 1)
+        const JAR_SITUATIONS_POOL = [
+            // GEMBIRA (5 situasi)
+            { id: 'j1', icon: '📚', text: 'Mendapat hadiah buku cerita baharu daripada ibu pada hari jadi.', emotion: 'gembira' },
+            { id: 'j2', icon: '✍️', text: 'Cikgu memuji tulisan kamu sangat kemas dan cantik di dalam kelas.', emotion: 'gembira' },
+            { id: 'j3', icon: '🛝', text: 'Dapat bermain buaian dan gelongsor di taman permainan bersama kawan baik.', emotion: 'gembira' },
+            { id: 'j4', icon: '🍛', text: 'Nenek memasak makanan kegemaran kamu semasa pulang ke kampung.', emotion: 'gembira' },
+            { id: 'j5', icon: '💯', text: 'Berjaya mendapat markah penuh dalam ujian ejaan Bahasa Melayu.', emotion: 'gembira' },
+
+            // SEDIH (5 situasi)
+            { id: 'j6', icon: '🍦', text: 'Aiskrim yang baru dibeli terjatuh ke atas lantai sebelum sempat dimakan.', emotion: 'sedih' },
+            { id: 'j7', icon: '🐱', text: 'Kucing peliharaan kesayangan hilang dan tidak pulang ke rumah.', emotion: 'sedih' },
+            { id: 'j8', icon: '🤒', text: 'Kawan baik tidak hadir ke sekolah hari ini kerana demam.', emotion: 'sedih' },
+            { id: 'j9', icon: '🚗', text: 'Mainan kereta kesayangan terpijak oleh adik sehingga patah dua.', emotion: 'sedih' },
+            { id: 'j10', icon: '👋', text: 'Terpaksa berpisah dengan sepupu yang pulang selepas cuti sekolah tamat.', emotion: 'sedih' },
+
+            // TAKUT (5 situasi)
+            { id: 'j11', icon: '⛈️', text: 'Terdengar bunyi guruh yang sangat kuat dan kilat semasa hujan lebat.', emotion: 'takut' },
+            { id: 'j12', icon: '🕯️', text: 'Lampu rumah tiba-tiba terpadam dan bilik menjadi sangat gelap gelita.', emotion: 'takut' },
+            { id: 'j13', icon: '🏬', text: 'Tersesat dan terpisah daripada ibu dan ayah di pasar raya yang ramai orang.', emotion: 'takut' },
+            { id: 'j14', icon: '🐕', text: 'Seekor anjing besar menyalak dengan kuat ketika kamu berjalan pulang dari sekolah.', emotion: 'takut' },
+            { id: 'j15', icon: '🦷', text: 'Hendak masuk ke bilik doktor gigi buat kali pertama untuk mencabut gigi susu.', emotion: 'takut' },
+
+            // MARAH (5 situasi)
+            { id: 'j16', icon: '🖍️', text: 'Kawan merampas pensel warna kamu tanpa meminta izin terlebih dahulu.', emotion: 'marah' },
+            { id: 'j17', icon: '📓', text: 'Adik menconteng buku latihan sekolah kamu yang sudah siap ditulis.', emotion: 'marah' },
+            { id: 'j18', icon: '🍱', text: 'Ada murid memotong barisan kamu semasa sedang beratur membeli makanan di kantin.', emotion: 'marah' },
+            { id: 'j19', icon: '🗣️', text: 'Kawan mengejek nama kamu dan mentertawakan kamu di hadapan kelas.', emotion: 'marah' },
+            { id: 'j20', icon: '🧱', text: 'Menara blok kayu yang kamu susun dengan susah payah sengaja ditendang kawan.', emotion: 'marah' },
+
+            // MALU (5 situasi)
+            { id: 'j21', icon: '🧦', text: 'Tersalah memakai stokin berlainan warna ke sekolah dan disedari oleh kawan-kawan.', emotion: 'malu' },
+            { id: 'j22', icon: '👟', text: 'Terjatuh di hadapan perhimpunan sekolah semasa semua murid sedang melihat.', emotion: 'malu' },
+            { id: 'j23', icon: '🙋', text: 'Cikgu memanggil nama kamu ke hadapan kelas tetapi kamu terlupa jawapannya.', emotion: 'malu' },
+            { id: 'j24', icon: '💨', text: 'Terkentut dengan kuat secara tidak sengaja semasa kelas sedang sunyi sepi.', emotion: 'malu' },
+            { id: 'j25', icon: '🍜', text: 'Baju sekolah terkena tumpahan kuah mi sup di kantin sehingga bertompok besar.', emotion: 'malu' }
+        ];
+
+        // State Aplikasi
+        let state = {
+            sessionId: 'murid_' + Math.random().toString(36).substring(2, 10) + '_' + Date.now(),
+            playerName: '',
+            playerAvatar: '👦',
+            learnedEmotions: new Set(),
+            currentPreviewEmotionKey: null,
+            act1OpenedCount: 0,
+            currentAct1Emotion: null,
+            act2Index: 0,
+            act2Score: 0,
+            act2Answered: false,
+            activeGroup: 1,
+            groupScores: { 1: 0, 2: 0, 3: 0, 4: 0 },
+            jarCounts: { gembira: 0, sedih: 0, takut: 0, marah: 0, malu: 0 },
+            jarContents: { gembira: [], sedih: [], takut: [], marah: [], malu: [] },
+            selectedJarCardId: null,
+            undealtJarDeck: [],
+            activeJarCards: [],
+            timerTotalSeconds: 0,
+            timerSeconds: 0,
+            timerRunning: false,
+            timerInterval: null,
+            wheelAngle: 0,
+            isSpinning: false,
+            sfxEnabled: true,
+            bgmEnabled: false
+        };
+
+        /* =========================================================================
+           2. ENJIN AUDIO LEMBUT (WEB AUDIO API - TIADA FAIL LUAR)
+           ========================================================================= */
+        let audioCtx = null;
+        let bgmInterval = null;
+
+        function ensureAudioCtx() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!state.sfxEnabled) return;
+            try {
+                ensureAudioCtx();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(520, now);
+                    osc.frequency.exponentialRampToValueAtTime(680, now + 0.08);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+                    osc.start(now);
+                    osc.stop(now + 0.09);
+                } else if (type === 'pop') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(340, now);
+                    osc.frequency.exponentialRampToValueAtTime(720, now + 0.14);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                    gain.gain.setValueAtTime(0.11, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+                    osc.start(now);
+                    osc.stop(now + 0.38);
+                } else if (type === 'tryagain') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(330, now);
+                    osc.frequency.linearRampToValueAtTime(260, now + 0.22);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+                    osc.start(now);
+                    osc.stop(now + 0.24);
+                } else if (type === 'win') {
+                    const notes = [523.25, 659.25, 783.99, 1046.5];
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'triangle';
+                        o.frequency.setValueAtTime(freq, now + idx * 0.11);
+                        g.gain.setValueAtTime(0.1, now + idx * 0.11);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.11 + 0.35);
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.start(now + idx * 0.11);
+                        o.stop(now + idx * 0.11 + 0.35);
+                    });
+                }
+            } catch (e) {
+                // Abaikan jika pelayar menyekat audio sebelum interaksi
+            }
+        }
+
+        function toggleSFX() {
+            state.sfxEnabled = !state.sfxEnabled;
+            document.getElementById('sfx-icon').textContent = state.sfxEnabled ? '🔔' : '🔕';
+            if (state.sfxEnabled) playSound('click');
+        }
+
+        function toggleBGM() {
+            state.bgmEnabled = !state.bgmEnabled;
+            document.getElementById('bgm-icon').textContent = state.bgmEnabled ? '🎵' : '🔇';
+            if (state.bgmEnabled) {
+                ensureAudioCtx();
+                const melody = [261.63, 329.63, 392.00, 329.63, 293.66, 349.23, 392.00, 329.63];
+                let step = 0;
+                bgmInterval = setInterval(() => {
+                    if (!state.bgmEnabled || !audioCtx) return;
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(melody[step % melody.length], now);
+                    gain.gain.setValueAtTime(0.025, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.55);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.56);
+                    step++;
+                }, 650);
+            } else {
+                clearInterval(bgmInterval);
+            }
+        }
+
+        /* =========================================================================
+           3. NAVIGASI ANTARA FASA & PRATONTON EMOSI UTAMA
+           ========================================================================= */
+        function navigateTo(viewKey) {
+            playSound('click');
+            const views = ['home', 'act1', 'act2', 'act3', 'act4', 'summary'];
+            views.forEach(v => {
+                const sec = document.getElementById(`view-${v}`);
+                const nav = document.getElementById(`nav-${v}`);
+                if (sec) sec.classList.add('hidden');
+                if (nav) nav.classList.remove('ring-4', 'ring-sky-400');
+            });
+
+            const activeSec = document.getElementById(`view-${viewKey}`);
+            const activeNav = document.getElementById(`nav-${viewKey}`);
+            if (activeSec) activeSec.classList.remove('hidden');
+            if (activeNav) activeNav.classList.add('ring-4', 'ring-sky-400');
+
+            if (viewKey === 'act2') renderDetectiveCase();
+            if (viewKey === 'act3') initJarGame();
+            if (viewKey === 'act4') drawWheel();
+            if (viewKey === 'summary') updateSummaryBadge();
+        }
+
+        function previewEmotion(emotionKey) {
+            const em = EMOTIONS[emotionKey];
+            if (!em) return;
+            playSound('pop');
+            state.currentPreviewEmotionKey = emotionKey;
+            markEmotionLearned(emotionKey);
+
+            const box = document.getElementById('home-emotion-info');
+            document.getElementById('home-info-illustration').innerHTML = em.illustrationSVG;
+            document.getElementById('home-info-emoji').textContent = em.emoji;
+            document.getElementById('home-info-title').textContent = `Emosi ${em.name}`;
+            document.getElementById('home-info-desc').textContent = em.cue;
+            document.getElementById('home-info-situation').textContent = em.situationExample;
+            box.classList.remove('hidden');
+
+            replayPreviewEmotionAudio();
+        }
+
+        function replayPreviewEmotionAudio() {
+            if (!state.currentPreviewEmotionKey) return;
+            const em = EMOTIONS[state.currentPreviewEmotionKey];
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(
+                    `Emosi ${em.name}. Ciri ekspresi wajah: ${em.cue} Contoh situasi harian: ${em.situationExample}`
+                );
+                utter.lang = 'ms-MY';
+                utter.rate = 0.93;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        /* =========================================================================
+           4. LOGIK AKTIVITI 1: KOTAK EMOSI (SET INDUKSI)
+           ========================================================================= */
+        function openMysteryBox() {
+            playSound('pop');
+            const boxBtn = document.getElementById('mystery-box-btn');
+            boxBtn.classList.add('animate-wobble');
+
+            const mode = document.getElementById('act1-select-mode').value;
+            const keys = Object.keys(EMOTIONS);
+            const chosenKey = mode === 'random' ? keys[Math.floor(Math.random() * keys.length)] : mode;
+            const em = EMOTIONS[chosenKey];
+            state.currentAct1Emotion = em;
+
+            setTimeout(() => {
+                boxBtn.classList.remove('animate-wobble');
+                document.getElementById('mystery-box-container').classList.add('hidden');
+                document.getElementById('act1-card-stage').classList.remove('hidden');
+                document.getElementById('act1-secret-view').classList.remove('hidden');
+                document.getElementById('act1-public-view').classList.add('hidden');
+
+                document.getElementById('act1-secret-emoji').textContent = em.emoji;
+                document.getElementById('act1-secret-name').textContent = em.name.toUpperCase();
+                document.getElementById('act1-secret-cue').textContent = em.cue;
+
+                state.act1OpenedCount = Math.min(5, state.act1OpenedCount + 1);
+                document.getElementById('act1-count').textContent = `${state.act1OpenedCount} / 5`;
+            }, 500);
+        }
+
+        function revealCardToClass() {
+            const em = state.currentAct1Emotion;
+            if (!em) return;
+            playSound('correct');
+            markEmotionLearned(em.id);
+
+            document.getElementById('act1-secret-view').classList.add('hidden');
+            const pubView = document.getElementById('act1-public-view');
+            pubView.className = `rounded-3xl p-6 sm:p-8 text-center border-4 shadow-2xl animate-pop ${em.bgLight} ${em.border}`;
+            document.getElementById('act1-public-emoji').textContent = em.emoji;
+            document.getElementById('act1-public-name').textContent = em.name.toUpperCase();
+            document.getElementById('act1-public-name').className = `text-4xl sm:text-5xl font-display font-bold mb-3 ${em.textDark}`;
+            document.getElementById('act1-public-cue').textContent = `Ciri wajah: ${em.cue}`;
+            pubView.classList.remove('hidden');
+        }
+
+        function resetMysteryBox() {
+            playSound('click');
+            document.getElementById('act1-card-stage').classList.add('hidden');
+            document.getElementById('mystery-box-container').classList.remove('hidden');
+        }
+
+        /* =========================================================================
+           5. LOGIK AKTIVITI 2: DETEKTIF EMOSI (PERKEMBANGAN)
+           ========================================================================= */
+        function renderDetectiveCase() {
+            const current = DETECTIVE_CASES[state.act2Index];
+            state.act2Answered = false;
+
+            document.getElementById('act2-progress').textContent = `${state.act2Index + 1} / ${DETECTIVE_CASES.length}`;
+            document.getElementById('act2-case-label').textContent = `Situasi #${state.act2Index + 1}`;
+            document.getElementById('act2-situation-icon').textContent = current.icon;
+            document.getElementById('act2-situation-text').textContent = `"${current.text}"`;
+            document.getElementById('act2-feedback').classList.add('hidden');
+
+            const cornersContainer = document.getElementById('act2-corners');
+            cornersContainer.innerHTML = '';
+
+            Object.values(EMOTIONS).forEach(em => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `btn-3d ${em.bgLight} border-4 ${em.border} rounded-2xl p-3 flex flex-col items-center justify-center hover:brightness-95 transition`;
+                btn.innerHTML = `
+                    <span class="text-4xl sm:text-5xl mb-1">${em.emoji}</span>
+                    <span class="font-display font-bold text-base sm:text-lg ${em.textDark}">${em.name}</span>
+                `;
+                btn.onclick = () => checkDetectiveAnswer(em.id, btn);
+                cornersContainer.appendChild(btn);
+            });
+        }
+
+        function pushCurrentStudentRecord(completedSummary = false) {
+            if (!state.playerName || typeof window.syncStudentProgressToCloud !== 'function') return;
+            window.syncStudentProgressToCloud({
+                sessionId: state.sessionId,
+                playerName: state.playerName,
+                playerAvatar: state.playerAvatar,
+                learnedCount: state.learnedEmotions.size,
+                learnedList: Array.from(state.learnedEmotions),
+                detectiveStars: state.act2Score,
+                completedSummary: completedSummary
+            });
+        }
+
+        function markEmotionLearned(emotionKey) {
+            if (!EMOTIONS[emotionKey]) return;
+            state.learnedEmotions.add(emotionKey);
+            const badge = document.getElementById(`badge-learned-${emotionKey}`);
+            if (badge) {
+                badge.textContent = '✅ Dikenali';
+                badge.classList.remove('bg-white/80', 'text-slate-500');
+                badge.classList.add('bg-emerald-500', 'text-white');
+            }
+            pushCurrentStudentRecord(false);
+        }
+
+        function checkDetectiveAnswer(chosenId, btnEl) {
+            const current = DETECTIVE_CASES[state.act2Index];
+            const fbBox = document.getElementById('act2-feedback');
+            const fbIcon = document.getElementById('act2-fb-icon');
+            const fbTitle = document.getElementById('act2-fb-title');
+            const fbMsg = document.getElementById('act2-fb-msg');
+            const fbAlt = document.getElementById('act2-fb-alt');
+
+            fbBox.classList.remove('hidden');
+            if (current.accepted.includes(chosenId)) {
+                playSound('correct');
+                markEmotionLearned(chosenId);
+                if (!state.act2Answered) {
+                    state.act2Score += 1;
+                    document.getElementById('act2-score').textContent = `⭐ ${state.act2Score}`;
+                    state.act2Answered = true;
+                    pushCurrentStudentRecord(false);
+                }
+                fbBox.className = 'rounded-2xl p-5 border-4 border-emerald-400 bg-emerald-50 mb-4 animate-pop';
+                fbIcon.textContent = '🎉';
+                fbTitle.textContent = `Syabas Detektif! (${EMOTIONS[chosenId].name})`;
+                fbTitle.className = 'text-xl font-display font-bold text-emerald-800';
+                fbMsg.textContent = current.explanation;
+                fbMsg.className = 'text-sm sm:text-base mt-1 font-semibold text-emerald-900';
+                fbAlt.textContent = current.altNote;
+                fbAlt.classList.remove('hidden');
+            } else {
+                playSound('tryagain');
+                btnEl.classList.add('animate-wobble');
+                setTimeout(() => btnEl.classList.remove('animate-wobble'), 650);
+
+                fbBox.className = 'rounded-2xl p-5 border-4 border-amber-400 bg-amber-50 mb-4 animate-pop';
+                fbIcon.textContent = '🤔';
+                fbTitle.textContent = `Cuba Fikir Semula, Detektif!`;
+                fbTitle.className = 'text-xl font-display font-bold text-amber-800';
+                fbMsg.textContent = `Kalau situasi ini berlaku pada kamu, adakah kamu rasa ${EMOTIONS[chosenId].name}? Cuba pilih sudut emosi yang lain!`;
+                fbMsg.className = 'text-sm sm:text-base mt-1 font-semibold text-amber-900';
+                fbAlt.classList.add('hidden');
+            }
+        }
+
+        function nextDetectiveCase() {
+            playSound('click');
+            if (state.act2Index < DETECTIVE_CASES.length - 1) {
+                state.act2Index++;
+                renderDetectiveCase();
+            } else {
+                triggerConfetti();
+                playSound('win');
+                navigateTo('act3');
+            }
+        }
+
+        function speakCurrentSituation() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(DETECTIVE_CASES[state.act2Index].text);
+                utter.lang = 'ms-MY';
+                utter.rate = 0.92;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        /* =========================================================================
+           6. LOGIK AKTIVITI 3: BALANG EMOSI (KEMUNCAK, 25 SITUASI & PEMASA UNDUR)
+           ========================================================================= */
+        const GROUP_STYLES = {
+            1: { label: '🔴 Kumpulan 1', border: 'border-rose-500', bg: 'bg-rose-100', text: 'text-rose-700', titleText: 'text-rose-900', badgeBg: 'bg-rose-50' },
+            2: { label: '🔵 Kumpulan 2', border: 'border-sky-500', bg: 'bg-sky-100', text: 'text-sky-700', titleText: 'text-sky-900', badgeBg: 'bg-sky-50' },
+            3: { label: '🟢 Kumpulan 3', border: 'border-emerald-500', bg: 'bg-emerald-100', text: 'text-emerald-700', titleText: 'text-emerald-900', badgeBg: 'bg-emerald-50' },
+            4: { label: '🟡 Kumpulan 4', border: 'border-amber-500', bg: 'bg-amber-100', text: 'text-amber-700', titleText: 'text-amber-900', badgeBg: 'bg-amber-50' }
+        };
+
+        function selectActiveGroup(groupNum) {
+            playSound('click');
+            state.activeGroup = groupNum;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`group-card-${i}`);
+                const sub = el.querySelector('span:last-child');
+                const gs = GROUP_STYLES[i];
+                if (i === groupNum) {
+                    el.className = `group-tab p-3 rounded-2xl border-4 ${gs.border} ${gs.bg} text-left transition shadow-md scale-[1.02]`;
+                    sub.textContent = '⭐ Giliran Aktif';
+                    sub.className = `text-[11px] font-bold ${gs.text} block mt-0.5`;
+                } else {
+                    el.className = 'group-tab p-3 rounded-2xl border-2 border-slate-200 bg-white text-left transition opacity-80 hover:opacity-100';
+                    sub.textContent = 'Klik untuk pilih';
+                    sub.className = 'text-[11px] font-bold text-slate-400 block mt-0.5';
+                }
+            }
+        }
+
+        function initJarGame() {
+            if (state.activeJarCards.length === 0 && state.undealtJarDeck.length === 0) {
+                resetJarGame();
+            } else {
+                updateJarCountersUI();
+                renderJarCards();
+                renderJars();
+            }
+        }
+
+        function resetJarGame() {
+            playSound('click');
+            // Kocok kesemua 25 situasi secara rawak
+            const shuffled = [...JAR_SITUATIONS_POOL].sort(() => 0.5 - Math.random());
+            state.activeJarCards = shuffled.slice(0, 4);
+            state.undealtJarDeck = shuffled.slice(4);
+            state.selectedJarCardId = state.activeJarCards[0].id;
+
+            // Set semula isi & kiraan balang
+            state.jarCounts = { gembira: 0, sedih: 0, takut: 0, marah: 0, malu: 0 };
+            state.jarContents = { gembira: [], sedih: [], takut: [], marah: [], malu: [] };
+
+            updateJarCountersUI();
+            renderJarCards();
+            renderJars();
+            document.getElementById('jar-feedback-banner').classList.add('hidden');
+        }
+
+        function drawEnvelopeSituation() {
+            if (state.undealtJarDeck.length === 0) {
+                playSound('tryagain');
+                return;
+            }
+            playSound('pop');
+            const nextCard = state.undealtJarDeck.shift();
+            state.activeJarCards.push(nextCard);
+            state.selectedJarCardId = nextCard.id;
+            updateJarCountersUI();
+            renderJarCards();
+        }
+
+        function updateJarCountersUI() {
+            const total = JAR_SITUATIONS_POOL.length;
+            const completed = Object.values(state.jarCounts).reduce((a, b) => a + b, 0);
+            const remaining = total - completed;
+
+            const remEl = document.getElementById('jar-remaining-badge');
+            const compEl = document.getElementById('jar-completed-badge');
+            const envBtn = document.getElementById('btn-open-envelope');
+
+            if (remEl) remEl.textContent = `📦 Baki Situasi: ${remaining} / ${total}`;
+            if (compEl) compEl.textContent = `✅ Selesai: ${completed} / ${total}`;
+            if (envBtn) {
+                if (state.undealtJarDeck.length === 0) {
+                    envBtn.disabled = true;
+                    envBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    envBtn.textContent = '✉️ Semua Sampul Dibuka';
+                } else {
+                    envBtn.disabled = false;
+                    envBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    envBtn.textContent = `✉️ Buka Sampul (${state.undealtJarDeck.length} berbaki)`;
+                }
+            }
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'ms-MY';
+                utter.rate = 0.92;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        function renderJarCards() {
+            const pool = document.getElementById('jar-cards-pool');
+            pool.innerHTML = '';
+
+            if (state.activeJarCards.length === 0) {
+                if (state.undealtJarDeck.length > 0) {
+                    pool.innerHTML = `
+                        <div class="col-span-full bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 text-center">
+                            <p class="font-display font-bold text-lg sm:text-xl text-amber-900 mb-2">✉️ Sampul di atas meja sudah kosong! Masih ada <strong>${state.undealtJarDeck.length} situasi</strong> dalam sampul misteri.</p>
+                            <button onclick="openNextBatchEnvelopes()" class="btn-3d bg-purple-600 hover:bg-purple-700 text-white font-display font-bold px-5 py-2.5 rounded-xl">
+                                ✉️ Buka 4 Sampul Situasi Seterusnya
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    pool.innerHTML = `
+                        <div class="col-span-full bg-emerald-50 border-4 border-emerald-400 rounded-2xl p-6 text-center">
+                            <p class="font-display font-bold text-xl sm:text-2xl text-emerald-800 mb-2">🏆 Tahniah! Kesemua 25 situasi berjaya dikelaskan ke dalam 5 Balang Emosi!</p>
+                            <button onclick="resetJarGame()" class="btn-3d bg-purple-600 hover:bg-purple-700 text-white font-display font-bold px-6 py-2.5 rounded-xl">
+                                🔄 Main Semula (Kocok 25 Situasi)
+                            </button>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
+            state.activeJarCards.forEach(card => {
+                const isSelected = state.selectedJarCardId === card.id;
+                const el = document.createElement('div');
+                el.draggable = true;
+                el.className = `cursor-pointer rounded-2xl p-3.5 border-4 transition flex flex-col justify-between shadow-sm ${
+                    isSelected
+                        ? 'bg-amber-100 border-amber-500 scale-[1.03] shadow-md'
+                        : 'bg-white border-slate-200 hover:border-purple-300'
+                }`;
+                el.innerHTML = `
+                    <div class="flex items-start gap-2.5">
+                        <span class="text-3xl shrink-0">${card.icon}</span>
+                        <p class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">${card.text}</p>
+                    </div>
+                    <div class="mt-2.5 flex items-center justify-between gap-1">
+                        <button type="button" onclick="event.stopPropagation(); speakText('${card.text.replace(/'/g, "\\'")}')" title="Dengar Bacaan Situasi" class="bg-sky-100 hover:bg-sky-200 text-sky-800 px-2 py-0.5 rounded-full text-[11px] font-bold">
+                            🔊 Baca
+                        </button>
+                        <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-full ${isSelected ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-500'}">
+                            ${isSelected ? '✅ Dipilih (Klik Balang)' : 'Klik / Seret'}
+                        </span>
+                    </div>
+                `;
+
+                // Klik untuk pilih (mesra skrin sentuh / papan pintar)
+                el.onclick = () => {
+                    playSound('click');
+                    state.selectedJarCardId = card.id;
+                    renderJarCards();
+                };
+
+                // Drag & Drop untuk tetikus
+                el.ondragstart = (e) => {
+                    state.selectedJarCardId = card.id;
+                    e.dataTransfer.setData('text/plain', card.id);
+                };
+
+                pool.appendChild(el);
+            });
+        }
+
+        function openNextBatchEnvelopes() {
+            playSound('pop');
+            const batch = state.undealtJarDeck.splice(0, 4);
+            state.activeJarCards.push(...batch);
+            if (state.activeJarCards.length > 0) {
+                state.selectedJarCardId = state.activeJarCards[0].id;
+            }
+            updateJarCountersUI();
+            renderJarCards();
+        }
+
+        function renderJars() {
+            const container = document.getElementById('jars-container');
+            container.innerHTML = '';
+
+            Object.values(EMOTIONS).forEach(em => {
+                const count = state.jarCounts[em.id];
+                const fillHeight = Math.min(100, count * 20); // 5 kad maksimum = 100% penuh!
+
+                const jarWrapper = document.createElement('div');
+                jarWrapper.className = 'flex flex-col items-center cursor-pointer group';
+                jarWrapper.innerHTML = `
+                    <!-- Penutup Balang -->
+                    <div class="w-24 sm:w-28 h-4 bg-amber-700 rounded-t-lg border-2 border-amber-900 shadow-sm z-10"></div>
+                    <!-- Badan Balang -->
+                    <div class="jar-body w-full h-48 sm:h-52 relative overflow-hidden flex flex-col items-center justify-center p-2 text-center"
+                         ondragover="event.preventDefault(); this.classList.add('drag-over');"
+                         ondragleave="this.classList.remove('drag-over');"
+                         ondrop="event.preventDefault(); this.classList.remove('drag-over'); handleDropIntoJar('${em.id}');">
+                        
+                        <!-- Paras Isian Visual -->
+                        <div class="absolute inset-x-0 bottom-0 ${em.bgSolid} opacity-40 transition-all duration-500" style="height: ${fillHeight}%"></div>
+                        
+                        <span class="relative z-10 text-5xl sm:text-6xl group-hover:scale-110 transition-transform">${em.emoji}</span>
+                        <span class="relative z-10 font-display font-bold text-base sm:text-lg ${em.textDark} mt-1">${em.name}</span>
+                        <div class="relative z-10 mt-1.5 flex items-center gap-1">
+                            <span class="bg-white/90 px-2.5 py-0.5 rounded-full text-xs font-extrabold text-slate-700 shadow-sm">
+                                ${count} / 5 Kad
+                            </span>
+                            <button type="button" onclick="event.stopPropagation(); openJarInspectModal('${em.id}')" title="Lihat isi balang" class="bg-white/90 hover:bg-white px-2 py-0.5 rounded-full text-xs font-bold text-purple-700 shadow-sm">
+                                👁️
+                            </button>
+                        </div>
+                    </div>
+                `;
+                jarWrapper.onclick = () => {
+                    if (state.selectedJarCardId && state.activeJarCards.length > 0) {
+                        handleDropIntoJar(em.id);
+                    } else {
+                        openJarInspectModal(em.id);
+                    }
+                };
+                container.appendChild(jarWrapper);
+            });
+        }
+
+        function openJarInspectModal(emotionId) {
+            playSound('click');
+            const em = EMOTIONS[emotionId];
+            const items = state.jarContents[emotionId] || [];
+            document.getElementById('modal-jar-emoji').textContent = em.emoji;
+            document.getElementById('modal-jar-title').textContent = `Isi Balang ${em.name}`;
+            document.getElementById('modal-jar-count').textContent = `${items.length} daripada 5 situasi terkumpul`;
+
+            const listEl = document.getElementById('modal-jar-list');
+            if (items.length === 0) {
+                listEl.innerHTML = `<p class="text-sm text-slate-500 text-center py-6 font-semibold">Balang ini masih kosong. Masukkan kad situasi yang sesuai!</p>`;
+            } else {
+                listEl.innerHTML = items.map((c, idx) => `
+                    <div class="flex items-start gap-2.5 p-3 rounded-2xl ${em.bgLight} border-2 ${em.border}">
+                        <span class="text-2xl shrink-0">${c.icon}</span>
+                        <p class="text-xs sm:text-sm font-bold text-slate-800">${idx + 1}. ${c.text}</p>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('jar-inspect-modal').classList.remove('hidden');
+        }
+
+        function closeJarInspectModal() {
+            playSound('click');
+            document.getElementById('jar-inspect-modal').classList.add('hidden');
+        }
+
+        function handleDropIntoJar(jarEmotionId) {
+            if (!state.selectedJarCardId) return;
+            const cardIndex = state.activeJarCards.findIndex(c => c.id === state.selectedJarCardId);
+            if (cardIndex === -1) return;
+
+            const card = state.activeJarCards[cardIndex];
+            const banner = document.getElementById('jar-feedback-banner');
+            banner.classList.remove('hidden');
+
+            if (card.emotion === jarEmotionId) {
+                playSound('correct');
+                markEmotionLearned(jarEmotionId);
+                state.jarCounts[jarEmotionId]++;
+                state.jarContents[jarEmotionId].push(card);
+                state.groupScores[state.activeGroup]++;
+                document.getElementById(`group-score-${state.activeGroup}`).textContent = `⭐ ${state.groupScores[state.activeGroup]}`;
+
+                // Keluarkan kad yang selesai & isi sampul baharu secara automatik jika perlu
+                state.activeJarCards.splice(cardIndex, 1);
+                if (state.activeJarCards.length === 0 && state.undealtJarDeck.length > 0) {
+                    const nextBatch = state.undealtJarDeck.splice(0, 4);
+                    state.activeJarCards.push(...nextBatch);
+                }
+                state.selectedJarCardId = state.activeJarCards.length > 0 ? state.activeJarCards[0].id : null;
+
+                const totalCompleted = Object.values(state.jarCounts).reduce((a, b) => a + b, 0);
+                if (totalCompleted === JAR_SITUATIONS_POOL.length) {
+                    triggerConfetti();
+                    playSound('win');
+                }
+
+                banner.className = 'text-center p-3 rounded-2xl font-display font-bold text-sm sm:text-base mb-5 bg-emerald-100 text-emerald-800 border-2 border-emerald-400 animate-pop';
+                banner.textContent = `🎉 Hebat Kumpulan ${state.activeGroup}! Situasi itu dimasukkan ke dalam Balang ${EMOTIONS[jarEmotionId].name}! (+1 ⭐)`;
+
+                // Tukar giliran kumpulan secara automatik untuk penglibatan adil
+                const nextGroup = state.activeGroup < 4 ? state.activeGroup + 1 : 1;
+                selectActiveGroup(nextGroup);
+
+                updateJarCountersUI();
+                renderJarCards();
+                renderJars();
+            } else {
+                playSound('tryagain');
+                banner.className = 'text-center p-3 rounded-2xl font-display font-bold text-sm sm:text-base mb-5 bg-amber-100 text-amber-900 border-2 border-amber-400 animate-pop';
+                banner.textContent = `🤔 Cuba lagi Kumpulan ${state.activeGroup}! Kad "${card.text}" kurang sesuai untuk balang ${EMOTIONS[jarEmotionId].name}.`;
+            }
+        }
+
+        // Kawalan Pemasa Undur (Countdown Timer)
+        function setJarTimer(seconds) {
+            playSound('click');
+            clearInterval(state.timerInterval);
+            state.timerRunning = false;
+            state.timerTotalSeconds = seconds;
+            state.timerSeconds = seconds;
+            const display = document.getElementById('jar-timer-display');
+            const toggleBtn = document.getElementById('jar-timer-toggle');
+            const barWrap = document.getElementById('jar-timer-bar-wrap');
+            const bar = document.getElementById('jar-timer-bar');
+
+            if (seconds === 0) {
+                display.textContent = '∞';
+                toggleBtn.classList.add('hidden');
+                barWrap.classList.add('hidden');
+            } else {
+                updateTimerDisplay();
+                toggleBtn.textContent = 'Mula';
+                toggleBtn.classList.remove('hidden');
+                barWrap.classList.remove('hidden');
+                bar.style.width = '100%';
+            }
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(state.timerSeconds / 60);
+            const secs = state.timerSeconds % 60;
+            document.getElementById('jar-timer-display').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            if (state.timerTotalSeconds > 0) {
+                const pct = Math.max(0, (state.timerSeconds / state.timerTotalSeconds) * 100);
+                document.getElementById('jar-timer-bar').style.width = `${pct}%`;
+            }
+        }
+
+        function toggleJarTimer() {
+            playSound('click');
+            const toggleBtn = document.getElementById('jar-timer-toggle');
+            if (state.timerRunning) {
+                clearInterval(state.timerInterval);
+                state.timerRunning = false;
+                toggleBtn.textContent = 'Sambung';
+            } else {
+                state.timerRunning = true;
+                toggleBtn.textContent = 'Jeda';
+                state.timerInterval = setInterval(() => {
+                    if (state.timerSeconds > 0) {
+                        state.timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(state.timerInterval);
+                        state.timerRunning = false;
+                        toggleBtn.textContent = 'Tamat!';
+                        playSound('win');
+                    }
+                }, 1000);
+            }
+        }
+
+        /* =========================================================================
+           7. LOGIK AKTIVITI 4: RODA GERGASI EMOSI (PENUTUP - CANVAS)
+           ========================================================================= */
+        const wheelKeys = ['gembira', 'sedih', 'takut', 'marah', 'malu'];
+
+        function drawWheel() {
+            const canvas = document.getElementById('wheel-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const size = 400;
+            canvas.width = size;
+            canvas.height = size;
+
+            const center = size / 2;
+            const radius = center - 6;
+            const sliceAngle = (2 * Math.PI) / wheelKeys.length;
+
+            ctx.clearRect(0, 0, size, size);
+
+            wheelKeys.forEach((key, i) => {
+                const em = EMOTIONS[key];
+                const startAngle = state.wheelAngle + i * sliceAngle;
+                const endAngle = startAngle + sliceAngle;
+
+                // Segmen Roda
+                ctx.beginPath();
+                ctx.moveTo(center, center);
+                ctx.arc(center, center, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = em.wheelColor;
+                ctx.fill();
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.stroke();
+
+                // Teks & Emoji dalam segmen
+                ctx.save();
+                ctx.translate(center, center);
+                ctx.rotate(startAngle + sliceAngle / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#1E293B';
+                ctx.font = 'bold 22px Fredoka, sans-serif';
+                ctx.fillText(em.name, radius - 26, 8);
+                ctx.font = '34px sans-serif';
+                ctx.fillText(em.emoji, radius - 115, 12);
+                ctx.restore();
+            });
+        }
+
+        function spinEmotionWheel() {
+            if (state.isSpinning) return;
+            state.isSpinning = true;
+            playSound('pop');
+
+            document.getElementById('wheel-prompt-card').classList.add('hidden');
+            document.getElementById('wheel-result-card').classList.add('hidden');
+
+            // Putaran rawak antara 5 hingga 8 pusingan penuh
+            const spinDuration = 3200;
+            const startAngle = state.wheelAngle;
+            const extraRotation = (5 + Math.random() * 3) * 2 * Math.PI;
+            const startTime = performance.now();
+
+            function animateSpin(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / spinDuration, 1);
+                // Ease-out cubic untuk nyahpecutan roda yang semula jadi
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                state.wheelAngle = startAngle + extraRotation * easeOut;
+                drawWheel();
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateSpin);
+                } else {
+                    state.isSpinning = false;
+                    determineWheelWinner();
+                }
+            }
+
+            requestAnimationFrame(animateSpin);
+        }
+
+        function determineWheelWinner() {
+            playSound('correct');
+            triggerConfetti();
+
+            // Penunjuk berada di atas (-PI / 2 atau 1.5 * PI)
+            const sliceAngle = (2 * Math.PI) / wheelKeys.length;
+            const pointerAngle = (1.5 * Math.PI - (state.wheelAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+            const winningIndex = Math.floor(pointerAngle / sliceAngle) % wheelKeys.length;
+            const chosenKey = wheelKeys[winningIndex];
+            const em = EMOTIONS[chosenKey];
+
+            markEmotionLearned(chosenKey);
+
+            const resCard = document.getElementById('wheel-result-card');
+            resCard.className = `rounded-3xl p-6 sm:p-8 border-4 shadow-lg animate-pop ${em.bgLight} ${em.border}`;
+            document.getElementById('wheel-res-emoji').textContent = em.emoji;
+            document.getElementById('wheel-res-title').textContent = `Emosi: ${em.name.toUpperCase()}`;
+            document.getElementById('wheel-res-title').className = `text-3xl font-display font-bold mb-3 ${em.textDark}`;
+            document.getElementById('wheel-res-question').textContent = `"${em.question}"`;
+            resCard.classList.remove('hidden');
+        }
+
+        /* =========================================================================
+           8. SKRIN RUMUSAN & KESAN CONFETTI
+           ========================================================================= */
+        function updateSummaryBadge() {
+            // Pastikan sekurang-kurangnya jika murid sampai ke penutup, skor dipaparkan tepat
+            const count = Math.max(state.learnedEmotions.size, 3);
+            const displayName = state.playerName || 'Kelas 1 Bijak';
+            const titleEl = document.getElementById('badge-title');
+            const subtitle = document.getElementById('badge-subtitle');
+            if (titleEl) {
+                titleEl.textContent = `${state.playerAvatar} Lencana Wira Emosi: ${displayName}!`;
+            }
+            subtitle.textContent = `Pencapaian: ${count} / 5 Emosi Dikenal Pasti (Tahap Penguasaan 1 Tercapai!)`;
+            pushCurrentStudentRecord(true);
+            triggerConfetti();
+        }
+
+        function triggerConfetti() {
+            const colors = ['#FACC15', '#60A5FA', '#C084FC', '#F87171', '#F472B6', '#34D399'];
+            for (let i = 0; i < 35; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 3400);
+            }
+        }
+
+        /* =========================================================================
+           10. PENDAFTARAN NAMA MURID SEBELUM BERMAIN
+           ========================================================================= */
+        function openPlayerModal() {
+            playSound('click');
+            const input = document.getElementById('player-name-input');
+            if (state.playerName) input.value = state.playerName;
+            document.getElementById('player-name-modal').classList.remove('hidden');
+            setTimeout(() => input.focus(), 100);
+        }
+
+        function submitPlayerName(event) {
+            event.preventDefault();
+            const input = document.getElementById('player-name-input');
+            const cleanName = input.value.trim();
+            if (!cleanName) return;
+
+            state.playerName = cleanName;
+            state.sessionId = 'murid_' + cleanName.toLowerCase().replace(/[^a-z0-9]/g, '') + '_' + Math.random().toString(36).substring(2, 6);
+            playSound('correct');
+            triggerConfetti();
+            pushCurrentStudentRecord(false);
+
+            // Kemas kini paparan nama di bar atas, halaman utama & skrin rumusan
+            const headerName = document.getElementById('header-player-name');
+            if (headerName) headerName.textContent = cleanName;
+
+            const homeTitle = document.getElementById('home-welcome-title');
+            if (homeTitle) {
+                homeTitle.textContent = `Selamat Datang, ${cleanName}! 🌟`;
+            }
+
+            const summaryTitle = document.getElementById('summary-congrats-title');
+            if (summaryTitle) {
+                summaryTitle.textContent = `Tahniah, ${cleanName}! 🎉`;
+            }
+
+            document.getElementById('player-name-modal').classList.add('hidden');
+
+            // Ucapan selamat datang suara mesra murid
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(`Selamat datang ${cleanName}! Mari kenali dunia emosi bersama-sama.`);
+                utter.lang = 'ms-MY';
+                utter.rate = 0.95;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        /* =========================================================================
+           11. PAPARAN REKOD GURU & SIJIL MURID
+           ========================================================================= */
+        function openTeacherRecordsModal() {
+            playSound('click');
+            window.renderTeacherRecordsTable();
+            document.getElementById('teacher-records-modal').classList.remove('hidden');
+        }
+
+        function closeTeacherRecordsModal() {
+            playSound('click');
+            document.getElementById('teacher-records-modal').classList.add('hidden');
+        }
+
+        window.renderTeacherRecordsTable = function() {
+            const records = window.allStudentRecords || [];
+            const countBadge = document.getElementById('teacher-record-count');
+            const totalStat = document.getElementById('stat-total-students');
+            const tp1Stat = document.getElementById('stat-tp1-students');
+            const tbody = document.getElementById('teacher-records-tbody');
+
+            if (countBadge) countBadge.textContent = records.length;
+            if (totalStat) totalStat.textContent = records.length;
+
+            const tp1Count = records.filter(r => (r.learnedCount || 0) >= 3 || r.completedSummary).length;
+            if (tp1Stat) tp1Stat.textContent = tp1Count;
+
+            if (!tbody) return;
+            if (records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">Belum ada murid yang mendaftar nama lagi.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = records.map((rec, index) => {
+                const isTP1 = (rec.learnedCount || 0) >= 3 || rec.completedSummary;
+                const statusBadge = isTP1
+                    ? `<span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold">✅ Capai TP1</span>`
+                    : `<span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold">⏳ Sedang Main</span>`;
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3 text-slate-400">${index + 1}</td>
+                        <td class="py-2.5 px-3 font-display text-slate-800">${rec.playerAvatar || '🧒'} ${rec.playerName}</td>
+                        <td class="py-2.5 px-3 text-center">${Math.max(rec.learnedCount || 0, rec.completedSummary ? 5 : 0)} / 5</td>
+                        <td class="py-2.5 px-3 text-center text-amber-600">⭐ ${rec.detectiveStars || 0}</td>
+                        <td class="py-2.5 px-3 text-center">${statusBadge}</td>
+                        <td class="py-2.5 px-3 text-right text-slate-400 text-xs">${rec.timeLabel || '-'}</td>
+                    </tr>
+                `;
+            }).join('');
+        };
+
+        function exportRecordsCSV() {
+            playSound('click');
+            const records = window.allStudentRecords || [];
+            let csv = 'Bil,Nama Murid,Emosi Dikenali (/5),Bintang Detektif,Status PBD,Masa\n';
+            records.forEach((r, idx) => {
+                const isTP1 = (r.learnedCount || 0) >= 3 || r.completedSummary;
+                const status = isTP1 ? 'Capai TP1' : 'Sedang Bermain';
+                csv += `${idx + 1},"${r.playerName}",${r.learnedCount || 0},${r.detectiveStars || 0},"${status}","${r.timeLabel || ''}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Rekod_Kembara_Emosi_1Bijak.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadStudentCertificate() {
+            playSound('correct');
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 600;
+            const ctx = canvas.getContext('2d');
+
+            // Latar Sijil Ceria
+            const grad = ctx.createLinearGradient(0, 0, 900, 600);
+            grad.addColorStop(0, '#FEF9C3');
+            grad.addColorStop(0.5, '#E0F2FE');
+            grad.addColorStop(1, '#FCE7F3');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 900, 600);
+
+            // Bingkai Sijil
+            ctx.strokeStyle = '#F59E0B';
+            ctx.lineWidth = 14;
+            ctx.strokeRect(24, 24, 852, 552);
+
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#0369A1';
+            ctx.font = 'bold 34px sans-serif';
+            ctx.fillText('SIJIL PENCAPAIAN WIRA EMOSI', 450, 105);
+
+            ctx.fillStyle = '#475569';
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillText('Pendidikan Kesihatan Tahun 1 Bijak • SP 4.1.1', 450, 145);
+
+            ctx.font = '68px sans-serif';
+            ctx.fillText('🏅', 450, 235);
+
+            ctx.fillStyle = '#1E293B';
+            ctx.font = 'bold 22px sans-serif';
+            ctx.fillText('Dianugerahkan kepada:', 450, 290);
+
+            const name = state.playerName || 'Murid 1 Bijak';
+            ctx.fillStyle = '#B45309';
+            ctx.font = 'bold 46px sans-serif';
+            ctx.fillText(`${state.playerAvatar} ${name}`, 450, 355);
+
+            const count = Math.max(state.learnedEmotions.size, 3);
+            ctx.fillStyle = '#065F46';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.fillText(`Berjaya mengenal pasti ${count} / 5 Emosi & mengumpul ⭐ ${state.act2Score} Bintang!`, 450, 420);
+
+            ctx.fillStyle = '#64748B';
+            ctx.font = '18px sans-serif';
+            ctx.fillText(`Tarikh: ${new Date().toLocaleDateString('ms-MY')}`, 450, 495);
+
+            const link = document.createElement('a');
+            link.download = `Sijil_Emosi_${name.replace(/\s+/g, '_')}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        /* =========================================================================
+           12. KONGSI PAUTAN & PENJANA KOD QR
+           ========================================================================= */
+        function openShareModal() {
+            playSound('click');
+            const input = document.getElementById('qr-url-input');
+            const currentHref = window.location.href;
+            if (!input.value && currentHref && currentHref.startsWith('http')) {
+                input.value = currentHref;
+                generateQRCode();
+            }
+            document.getElementById('share-qr-modal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            playSound('click');
+            document.getElementById('share-qr-modal').classList.add('hidden');
+        }
+
+        function downloadGameHTML() {
+            playSound('click');
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Kembara_Dunia_Emosi_Tahun1.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function generateQRCode() {
+            const urlVal = document.getElementById('qr-url-input').value.trim();
+            const img = document.getElementById('qr-code-img');
+            const placeholder = document.getElementById('qr-placeholder-text');
+            const caption = document.getElementById('qr-caption-text');
+            const actions = document.getElementById('qr-action-buttons');
+
+            if (!urlVal) {
+                img.classList.add('hidden');
+                caption.classList.add('hidden');
+                actions.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                return;
+            }
+
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(urlVal)}`;
+            img.src = qrApiUrl;
+            img.classList.remove('hidden');
+            caption.classList.remove('hidden');
+            actions.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+        }
+
+        function copyShareLink() {
+            const input = document.getElementById('qr-url-input');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            const status = document.getElementById('share-copy-status');
+            status.textContent = '✅ Pautan berjaya disalin!';
+            status.classList.remove('hidden');
+            setTimeout(() => status.classList.add('hidden'), 2500);
+        }
+
+        async function downloadQRImage() {
+            const img = document.getElementById('qr-code-img');
+            if (!img || !img.src) return;
+            try {
+                const response = await fetch(img.src);
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = 'Kod_QR_Kembara_Dunia_Emosi.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(blobUrl);
+            } catch (e) {
+                window.open(img.src, '_blank');
+            }
+        }
+
+        // Mulakan aplikasi pada halaman utama apabila dimuatkan
+        window.onload = function () {
+            document.getElementById('nav-home').classList.add('ring-4', 'ring-sky-400');
+            drawWheel();
+            const nameInput = document.getElementById('player-name-input');
+            if (nameInput) setTimeout(() => nameInput.focus(), 200);
+        };
+    </script>
+</body>
+</html>
